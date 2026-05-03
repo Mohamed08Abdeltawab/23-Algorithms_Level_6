@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.37027.9 d17.14
+VisualStudioVersion = 17.14.37027.9
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinearSearch", "LinearSearch.csproj", "{528D1A03-63E6-4F70-A416-415300BAE1A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinearandBinarySearch", "LinearandBinarySearch.csproj", "{528D1A03-63E6-4F70-A416-415300BAE1A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
