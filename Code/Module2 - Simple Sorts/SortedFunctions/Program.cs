@@ -40,6 +40,17 @@ namespace SortedFunctions
 
             Console.WriteLine("Sorted array: " + string.Join(", ", arr3));
             #endregion
+
+
+            Console.WriteLine("using Insertion Sort");
+            #region Insertion Sort
+            int[]arr4 = { 5, 2, 9, 1, 5, 6 };
+            Console.WriteLine("Original array: " + string.Join(", ", arr4));
+            InsertionSort(arr4);
+            Console.WriteLine("Sorted array: " + string.Join(", ", arr4));
+
+
+            #endregion
         }
 
         //Function for perform Bubble Sort
@@ -89,6 +100,23 @@ namespace SortedFunctions
                 }
                 //swaping
                 (arr[i], arr[maxIndex]) = (arr[maxIndex], arr[i]);
+            }
+        }
+
+        // 5, 2, 9, 1, 5, 6 
+        static void InsertionSort(int[] arr)
+        {
+            int n = arr.Length;
+            for(int i = 1; i< n; i++)
+            {
+                int key = arr[i];//i = 2 arr[i] = 9
+                int j = i - 1;//arr[j] = 22
+                while (j >= 0 && arr[j] > key)
+                {
+                    arr[j + 1] = arr[j];
+                    j = j - 1;
+                }
+                arr[j + 1] = key;
             }
         }
     }
