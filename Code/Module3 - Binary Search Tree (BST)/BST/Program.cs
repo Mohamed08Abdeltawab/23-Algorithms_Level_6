@@ -75,6 +75,27 @@ namespace BST
                 Console.WriteLine(root.Value);
                 PrintTree(root.Left, space);
             }
+
+            public bool Searching(T value)
+            {
+                return Searching(Root, value) != null;
+            }
+
+            private BinarySearchTreeNode<T> Searching(BinarySearchTreeNode<T> node, T value)
+            {
+                if(node == null || node.Value.Equals(value))
+                {
+                    return node;
+                }
+                else if(value.CompareTo(node.Value) < 0)
+                {
+                    return Searching(node.Left, value);
+                }
+                else
+                {
+                    return Searching(node.Right, value);
+                }
+            }
         }
         static void Main(string[] args)
         {
@@ -90,6 +111,8 @@ namespace BST
             bst.Insert(50);
 
             bst.PrintTree();
+
+            Console.WriteLine("Searching for 55: " + (bst.Searching(55) ? "Found" : "Not Found"));
 
         }
     }
