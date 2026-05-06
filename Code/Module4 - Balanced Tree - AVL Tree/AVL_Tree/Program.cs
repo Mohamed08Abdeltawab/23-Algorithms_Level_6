@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Principal;
@@ -112,6 +114,57 @@ namespace AVL_Tree
 
         }
 
+
+        public bool Exists(int value)
+        {
+            return Exists(root, value);
+        }
+
+        private bool Exists(AVLNode node, int value)
+        {
+            if (node == null)
+            {
+                return false;//not found
+            }
+            if (value > node.Value)
+            {
+                return Exists(node.Right, value);
+            }
+            else if (value < node.Value)
+            {
+                return Exists(node.Left, value);
+            }
+            else
+            {
+                return true;//found
+            }
+        }
+
+
+        public AVLNode Search(int value)
+        {
+            return Search(root, value);
+        }
+
+        private AVLNode Search(AVLNode node, int value)
+        {
+            if (node == null)
+            {
+                return null;//not found
+            }
+            if (value > node.Value)
+            {
+                return Search(node.Right, value);
+            }
+            else if (value < node.Value)
+            {
+                return Search(node.Left, value);
+            }
+            else 
+            { 
+                return node;
+            }
+        }
 
         private AVLNode GetSamllestInRight(AVLNode node)
         {
@@ -300,6 +353,29 @@ namespace AVL_Tree
                 Console.WriteLine($"Deleting 40 from the AVL tree.");
                 tree.PrintTree();
                  Console.WriteLine("\n-------------------------------------------------\n");
+
+
+            // Searching for values
+            int searchValue = 30;
+            bool found = tree.Exists(searchValue);
+            Console.WriteLine($"\nSearch for value {searchValue}: " + (found ? "Found" : "Not Found"));
+
+            searchValue = 60;
+            found = tree.Exists(searchValue);
+            Console.WriteLine($"Search for value {searchValue}: " + (found ? "Found" : "Not Found"));
+
+
+
+            // Searching for values and printing the results
+            int searchValue2 = 30;
+            AVLNode foundNode = tree.Search(searchValue2);
+            Console.WriteLine($"\nSearch for value {searchValue2}: " + (foundNode != null ? $"Found node with value: {foundNode.Value}" : "Not Found"));
+
+            searchValue2 = 60;
+            foundNode = tree.Search(searchValue);
+            Console.WriteLine($"Search for value {searchValue2}: " + (foundNode != null ? $"Found node with value: {foundNode.Value}" : "Not Found"));
+
+            Console.ReadKey();
         }
     }
 }
