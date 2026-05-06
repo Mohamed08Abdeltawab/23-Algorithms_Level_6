@@ -62,6 +62,67 @@ namespace AVL_Tree
             return Balance(node);
         }
 
+
+        public void Delete(int value)
+        {
+            root = Delete(root, value);
+        }
+
+        private AVLNode Delete(AVLNode node, int value)
+        {
+            //when there is no node to delete return null
+            if (node == null) return node;
+
+            if (value < node.Value)
+            {
+                node.Left = Delete(node.Left, value);
+            }
+            else if (value > node.Value)
+            {
+                node.Right = Delete(node.Right, value);
+            }
+            else
+            {
+
+                //check if the node has one child or no child
+                if(node.Left == null)
+                {
+                    return node.Right;//when return the right child of the current node it will be assigned to the parent node of the current node and this will effectively delete the current node from the tree
+                }
+                else if(node.Right == null)
+                {
+                    return node.Left;//when return the left child of the current node it will be assigned to the parent node of the current node and this will effectively delete the current node from the tree
+                }
+
+                //if has two children get the samllest value in right and replace with current node value then delete the smallest value in right
+                AVLNode samllestInRight = GetSamllestInRight(node.Right);
+
+                //assign the value of the smallest node in the right subtree to the current node to replace the value of the current node with the smallest value in the right subtree
+                node.Value = samllestInRight.Value;
+
+                //delete the smallest node in the right subtree by his value
+                node.Right = Delete(node.Right, samllestInRight.Value);
+            }
+
+            //update the current node height
+            UpdateHeight(node);
+
+            //balance the tree after deletion
+            return Balance(node);
+
+        }
+
+
+        private AVLNode GetSamllestInRight(AVLNode node)
+        {
+            AVLNode current = node;
+            while(current.Left != null)
+            {
+                current = current.Left;
+            }
+            return current;
+        }
+
         //get height of node
         private int Height(AVLNode node)
         {
@@ -234,6 +295,11 @@ namespace AVL_Tree
                 tree.PrintTree();
                 Console.WriteLine("\n-------------------------------------------------\n");
             }
+
+            tree.Delete(40);
+                Console.WriteLine($"Deleting 40 from the AVL tree.");
+                tree.PrintTree();
+                 Console.WriteLine("\n-------------------------------------------------\n");
         }
     }
 }
