@@ -9,8 +9,8 @@ namespace RedBlackTree1
 {
     public class RedBlackTree
     {
-        private Node root;
-        private class Node
+        private Node root;//in first time is null
+        public class Node
         {
             public int Value;
             public Node Left, Right, Parent;
@@ -36,9 +36,11 @@ namespace RedBlackTree1
             Node parent = null;
 
             //get the parent and current node that null we will insert the value in
-            while (current != null)
+            while (current != null)//if that was flase that means we got the destination of new node and assigned parent to his current node we know
             {
                 parent = current;
+                //new value that is the value of new node we just inserted has left and right null
+                //we comparing with current.value to get to the position that we insdrted this node in
                 if (newValue < current.Value)
                     current = current.Left;
                 else
@@ -47,6 +49,7 @@ namespace RedBlackTree1
 
             //set the parent of the new node
             newNode.Parent = parent;
+            //if new value was less than parent value then the new node will be in parent.left node if node will be in parent.right
             if(newValue < parent.Value)
                 parent.Left = newNode;
             else
@@ -59,6 +62,8 @@ namespace RedBlackTree1
         {
             Node parent = null;
             Node grandparent = null;
+            //if its not has the first case that root equal node
+            //and must node is red and parent is red
             while ((node != root) && (node.IsRed) && (node.Parent.IsRed))
             {
                 //assign the parent and grandparent
@@ -72,7 +77,7 @@ namespace RedBlackTree1
                     Node uncle = grandparent.Right;
 
                     //case 1: uncle is red, only recoloring is needed
-                    if(uncle != null && uncle.IsRed)
+                    if(uncle != null && uncle.IsRed)//if uncle has value and his color is red
                     {
                         //make grandparent red and parent and uncle black
                         grandparent.IsRed = true;
@@ -80,27 +85,35 @@ namespace RedBlackTree1
                         uncle.IsRed = false;
 
                         //after recoloring, move the current node up to the grandparent
+                        //because we fixt this node contain 4 nodes -> grandparent , parent , nucle , new node
                         node = grandparent;
+                        //after that will check again in while loop if need fixing will do it
                     }
-                    else//if uncle is black, we perform case 2 or case 3 that check the shape of the current node if Triangle or Line
+                    else//if uncle is black or null, we perform case 2 or case 3 that check the shape of the current node if Triangle or Line
                     {
                         //case 2: if node is right child of its parent(triangle shape), we perform left rotation on parent
+                        //parent in left and his child(new node) in right that make a triangle shape
                         if(node == parent.Right)
                         {
-                            LeftRotate(parent);
-                            node = parent;
-                            parent = node.Parent;
+                            LeftRotate(parent);//make left rotate on parent make parent and his child in left side
+                            node = parent;//after rotation move node up will check in his parent 
+                            parent = node.Parent;//and make his parent equal his grandparent
                         }
+
+                        //if access to the if statement that mean we already make a rotation is line shape
+                        //and if not access in if statement than mean is already line shape we don't need to change it
+                        //but if access in if statement that make it move up 
+                        //if not that will be as it
 
                         //case 3: if node is left child of its parent(line shape),
                         //we perform right rotation on grandparent to balance the tree and recolor the nodes
-                        RightRotate(grandparent);
+                        RightRotate(grandparent);//because the shape is parent in left and new node in left then we balance with right rotation in grandparent
                         //swap the colors of parent and grandparent
                         (parent.IsRed, grandparent.IsRed) = (grandparent.IsRed, parent.IsRed);
-                        node = parent;
+                        node = parent;//move up --if acces to if statement will move to grandparent
                     }
                 }
-                else
+                else//same as if statement but change change in left and right rotation
                 {
                     //make uncle in the left node
                     Node uncle = grandparent.Left;
@@ -116,7 +129,7 @@ namespace RedBlackTree1
                         //after recoloring, move the current node up to the grandparent
                         node = grandparent;
                     }
-                    else//if uncle is black, we perform case 2 or case 3 that check the shape of the current node if Triangle or Line
+                    else//if uncle is black or null, we perform case 2 or case 3 that check the shape of the current node if Triangle or Line
                     {
                         //case 2: if node is left child of its parent(triangle shape), we perform right rotation on parent
                         if(node == parent.Left)
@@ -187,6 +200,22 @@ namespace RedBlackTree1
             node.Parent = left; // Update parent of the original node
         }
 
+        private Node FindNode(Node SearchInNode, int value)
+        {
+            if (SearchInNode == null || value == SearchInNode.Value)
+                return SearchInNode;
+            else if(value < SearchInNode.Value)
+                SearchInNode = FindNode(SearchInNode.Left, value);
+            else
+                SearchInNode = FindNode(SearchInNode.Right, value);
+            return SearchInNode;
+        }
+
+        public Node Find(int value)
+        {
+            return FindNode(root, value);
+        }
+
 
 
         // Public method to print the tree
@@ -229,14 +258,22 @@ namespace RedBlackTree1
 
 
             // Test values to be inserted into the tree
-            int[] values = { 10, 20, 30, 15, 25, 35, 5, 19 };
-            foreach (var value in values)
-            {
-                Console.WriteLine($"Inserting {value} to the tree\n");
-                rbTree.Insert(value);
-                rbTree.PrintTree();
-                Console.WriteLine("\n--------------------------------\n");
-            }
+            rbTree.Insert(10);
+            rbTree.Insert(20);
+            rbTree.Insert(30);
+            rbTree.Insert(15);
+            rbTree.Insert(16);
+            rbTree.Insert(17);
+
+
+            rbTree.PrintTree();
+
+            Console.WriteLine("Searching for 15");
+            if(rbTree.Find(15) != null)
+                Console.WriteLine("Found 15 in the tree.");
+            else
+                Console.WriteLine("15 not found in the tree.");
+
             Console.ReadKey();
         }
     }
