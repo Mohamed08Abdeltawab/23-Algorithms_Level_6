@@ -79,52 +79,97 @@ namespace GraphTraversals_BFS_DFS
         {
             if (!_vertexDictionary.ContainsKey(startVertex))
             {
-                Console.WriteLine("Invalid start vertex.");
+                Console.WriteLine($"Invalid start vertex: {startVertex}");
                 return;
             }
 
-            bool[] visited = new bool[_numberOfVertices]; // Keep track of visited vertices
+            //if not return then start BFS
 
-            Queue<int> queue = new Queue<int>(); // Queue for BFS
+            // Initialize visited array and queue for BFS
+            bool[] visited = new bool[_numberOfVertices];
+            Queue<int> queue = new Queue<int>();
 
+            // Enqueue the starting vertex and mark it as visited
             int startIndex = _vertexDictionary[startVertex];
-
-            visited[startIndex] = true; // Mark start vertex as visited
+            visited[startIndex] = true;
             queue.Enqueue(startIndex);
 
             Console.WriteLine("\nBreadth-First Search:");
 
-            while (queue.Count > 0)
+            //loop until the queue is empty
+            while(queue.Count > 0)
             {
-                int currentVertex = queue.Dequeue();
-                Console.Write($"{GetVertexName(currentVertex)} "); // Print the current vertex
+                //print start vertex name 
+                int currentIndex = queue.Dequeue();
+                Console.WriteLine(GetVertexName(currentIndex));
 
-                // Add all unvisited neighbors to the queue
-                for (int i = 0; i < _numberOfVertices; i++)
+                // Explore neighbors of the current vertex
+                for(int i=0; i< _numberOfVertices; i++)
                 {
-                    if (_adjacencyMatrix[currentVertex, i] > 0 && !visited[i])
+                    // Check if there is an edge and the vertex has not been visited
+                    if (!visited[i] && _adjacencyMatrix[currentIndex, i] > 0)
                     {
+                        //if there is an edge and not visited then enqueue the vertex and mark it as visited
                         visited[i] = true;
                         queue.Enqueue(i);
                     }
                 }
             }
-
-            Console.WriteLine();
         }
 
 
+        public void DFS(string startVertex)
+        {
+            if (!_vertexDictionary.ContainsKey(startVertex))
+            {
+                Console.WriteLine($"Invalid start vertex: {startVertex}");
+                return;
+            }
 
-        // Helper method to get vertex name by index
+            //start DFS
+            // Initialize visited array and stack for DFS
+            bool[] visited = new bool[_numberOfVertices];
+            Stack<int> stack = new Stack<int>();
+
+            //Push the starting vertex onto the stack and mark it as visited
+            int startIndex = _vertexDictionary[startVertex];
+            stack.Push(startIndex);
+
+            //loop until the stack is empty
+            while(stack.Count > 0)
+            {
+                int currentIndex = stack.Pop();
+
+                //skip if the vertex has already been visited
+                if (visited[currentIndex])
+                    continue;
+                
+                visited[currentIndex] = true;
+                Console.WriteLine(GetVertexName(currentIndex));
+                // Explore neighbors of the current vertex
+                for (int i= _numberOfVertices - 1; i >= 0; i--)
+                {
+                    //check if there is an edge and the vertex has not been visited
+                    if (!visited[i] && _adjacencyMatrix[currentIndex, i] > 0)
+                    {
+                        //push all the neighbors of the current vertex onto the stack
+                        stack.Push(i);
+                    }
+                }
+            }
+        }
+
         private string GetVertexName(int index)
         {
-            foreach (var pair in _vertexDictionary)
-            {
-                if (pair.Value == index)
-                    return pair.Key;
-            }
-            return null;
+            return _vertexDictionary.FirstOrDefault(x => x.Value == index).Key;
+            //foreach (var item in _vertexDictionary)
+            //{
+            //    if(item.Value == index)
+            //        return item.Key;
+            //}
+            //return null;
         }
+
     }
 
     internal class Program
@@ -153,8 +198,12 @@ namespace GraphTraversals_BFS_DFS
             graph.DisplayGraph("Adjacency Matrix (Undirected Graph):");
 
             // Perform BFS 
+            Console.WriteLine("\nBreadth-First Search:");
             graph.BFS("0");
-            ;
+
+            // Perform DFS
+            Console.WriteLine("\nDepth-First Search:");
+            graph.DFS("0");
 
             Console.ReadKey();
         }
