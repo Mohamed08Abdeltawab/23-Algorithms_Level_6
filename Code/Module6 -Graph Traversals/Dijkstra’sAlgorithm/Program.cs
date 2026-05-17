@@ -207,6 +207,78 @@ namespace Dijkstra_sAlgorithm
         }
 
 
+
+
+        public void Dijkstra(string startVertex, string endVertex)
+        {
+            if(!_vertexDictionary.ContainsKey(startVertex) || !_vertexDictionary.ContainsKey(endVertex))
+            {
+                Console.WriteLine($"Start vertex '{startVertex}' or end vertex '{endVertex}' does not exist in the graph.");
+                return;
+            }
+
+            // Initialize distances and visited arrays and predecessor array
+            int startIndex = _vertexDictionary[startVertex];
+            int[] distances = new int[_numberOfVertices];
+            bool[] visited = new bool[_numberOfVertices];
+            string[] predecessor = new string[_numberOfVertices];
+
+            //set all distances to infinity (or a very large number)
+            for (int i = 0; i < _numberOfVertices; i++)
+            {
+                distances[i] = int.MaxValue;
+                visited[i] = false;
+                predecessor[i] = null; // no predecessor at the start
+            }
+            distances[startIndex] = 0;
+
+            var priorityQueue = new SortedSet<(int Distance, int VertexIndex)>(Comparer<(int Distance, int VertexIndex)>.Create((a, b) =>
+            a.Distance == b.Distance ? a.VertexIndex.CompareTo(b.VertexIndex) : a.Distance.CompareTo(b.Distance)));
+
+            priorityQueue.Add((0, startIndex));
+
+            // Main loop of Dijkstra's algorithm
+            while(priorityQueue.Count > 0)
+            {
+                var (currentDistance, currentIndex) = priorityQueue.Min;
+                priorityQueue.Remove(priorityQueue.Min);
+
+                if (visited[currentIndex]) continue;
+                visited[currentIndex] = true;
+
+                //update the distance for all neighbors of the current vertex
+                for(int neighbor = 0; neighbor < _numberOfVertices; neighbor++)
+                {
+                    if (_adjacencyMatrix[currentIndex, neighbor] > 0 && !visited[neighbor])//if neightbor is an dege and not visited
+                    {
+                        int newDistance = distances[currentIndex] + _adjacencyMatrix[currentIndex, neighbor];
+
+                        //if the new distance is shorter, update it 
+                        if(newDistance < distances[neighbor])
+                        {
+                            //remove the old distance from the priority queue
+                            priorityQueue.Remove((distances[neighbor], neighbor));
+                            //update the distance and predecessor
+                            distances[neighbor] = newDistance;
+                            predecessor[neighbor] = GetVertexName(currentIndex);
+                            //add the new distance to the priority queue
+                            priorityQueue.Add((newDistance, neighbor));
+                        }
+                    }
+                }
+            }
+            int endIndex = _vertexDictionary[endVertex];
+            if (distances[endIndex] == int.MaxValue)
+            {
+                Console.WriteLine($"No path exists from '{startVertex}' to '{endVertex}'.");
+            }
+            else
+            {
+                Console.WriteLine($"\nShortest path from '{startVertex}' to '{endVertex}': Distance = {distances[endIndex]}, Path = {GetPath(predecessor, endIndex)}");
+            }
+        }
+
+
         // Main method to test the program
         public static void Main(string[] args)
         {
@@ -229,6 +301,9 @@ namespace Dijkstra_sAlgorithm
 
             // Run Dijkstra's Algorithm from vertex "A"
             graph.Dijkstra("A");
+
+            Console.WriteLine("\nFinding the shortest path from A to E:");
+            graph.Dijkstra("A", "E");
 
             Console.ReadKey();
         }
