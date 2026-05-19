@@ -39,6 +39,7 @@ namespace GreedyAlgorithms
             {
                 Console.WriteLine(coin);
             }
+            Console.WriteLine($"\nNumber of coins used: {result.Count}");
         }
 
         public static List<int> GetCoins(List<int> coins, int amount)
