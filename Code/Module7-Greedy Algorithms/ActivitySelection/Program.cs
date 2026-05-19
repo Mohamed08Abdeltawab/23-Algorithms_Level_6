@@ -10,6 +10,12 @@ namespace ActivitySelection
     {
         public int Start { get; set; }
         public int Finish { get; set; }
+
+        public Activity(int start, int finish)
+        {
+            Start = start;
+            Finish = finish;
+        }
     }
     internal class Program
     {
@@ -17,12 +23,12 @@ namespace ActivitySelection
         {
             List<Activity> activities = new List<Activity>
             {
-                new Activity { Start = 1, Finish = 4 },
-                new Activity { Start = 3, Finish = 5 },
-                new Activity { Start = 0, Finish = 6 },
-                new Activity { Start = 5, Finish = 7 },
-                new Activity { Start = 8, Finish = 9 },
-                new Activity { Start = 5, Finish = 9 },
+                new Activity (1,4),
+                new Activity (3,5),
+                new Activity (0,6),
+                new Activity (5,7),
+                new Activity (8,9),
+                new Activity (5,9),
             };
 
             var selectedActivities = SelectedActivity(activities);
@@ -39,20 +45,21 @@ namespace ActivitySelection
         public static List<Activity> SelectedActivity(List<Activity> activities)
         {
             // sort activities by finish time to ensure we always select the activity that finishes earliest
-            var sortedActivities = activities.OrderBy(a => a.Finish).ToList();
+            //var sortedActivities = activities.OrderBy(a => a.Finish).ToList();
 
+            activities.Sort((a,b) => a.Finish.CompareTo(b.Finish));
             //cearte a list to hold the selected activities
             List<Activity> selected = new List<Activity>();
 
             // keep track of the finish time of the last selected activity
-            int lastFinishTime = -1;
+            Activity lastSelectedActivity = null;
             // iterate through the sorted activities and select those that start after the last selected activity finishes
-            foreach(var activity in sortedActivities)
+            foreach(var activity in activities)
             {
-                if(activity.Start >= lastFinishTime)
+                if(lastSelectedActivity == null || activity.Start >= lastSelectedActivity.Finish)
                 {
                     selected.Add(activity);
-                    lastFinishTime = activity.Finish;
+                    lastSelectedActivity = activity;
                 }
             }
 
