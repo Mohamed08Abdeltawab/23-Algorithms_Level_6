@@ -81,31 +81,54 @@ namespace QueueStackProblems // 1. browser back button
 
 
             #region problem 5: Traffic Signal System Simulation
+            /*
+                        Queue<string> trafficQueue = new Queue<string>();
+                        trafficQueue.Enqueue("Car 1");
+                        trafficQueue.Enqueue("Truck 1");
+                        trafficQueue.Enqueue("Bike 1");
+                        trafficQueue.Enqueue("Bus 1");
 
-            Queue<string> trafficQueue = new Queue<string>();
-            trafficQueue.Enqueue("Car 1");
-            trafficQueue.Enqueue("Truck 1");
-            trafficQueue.Enqueue("Bike 1");
-            trafficQueue.Enqueue("Bus 1");
+                        while(trafficQueue.Count > 0)
+                        {
+                            Console.WriteLine(trafficQueue.Dequeue() + " has passed");
+                            if(trafficQueue.Count > 0)
+                            {
+                                Console.WriteLine("Vehicles waiting...");
+                                Console.WriteLine(string.Join(", ", trafficQueue));
+                            }
+                            else
+                            {
+                                Console.WriteLine("No Vehicles waiting");
+                            }
 
-            while(trafficQueue.Count > 0)
+                        }
+            */
+            #endregion
+
+
+            #region Problem 6: Ticketing System Simulation - Solution
+            Queue<int> ticketQueue = new Queue<int>();
+
+            for(int i = 101; i <= 105; i++)
             {
-                Console.WriteLine(trafficQueue.Dequeue() + " has passed");
-                if(trafficQueue.Count > 0)
+                ticketQueue.Enqueue(i);
+            }
+
+            while(ticketQueue.Count > 0)
+            {
+                Console.WriteLine("Processing Ticket: " + ticketQueue.Dequeue());
+                if(ticketQueue.Count > 0)
                 {
-                    Console.WriteLine("Vehicles waiting...");
-                    Console.WriteLine(string.Join(", ", trafficQueue));
+                    Console.WriteLine("Remaining Tickets: " + string.Join(", ", ticketQueue));
                 }
                 else
                 {
-                    Console.WriteLine("No Vehicles waiting");
+                    Console.WriteLine("No more tickets in the queue");
                 }
-
             }
 
 
             #endregion
-
 
 
 
