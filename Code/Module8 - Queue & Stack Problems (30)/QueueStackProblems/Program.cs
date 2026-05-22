@@ -132,27 +132,39 @@ namespace QueueStackProblems // 1. browser back button
 
 
             #region Problem 7: Implementing Simple Backtracking
+            /*
+                        Console.WriteLine("Start -> Go to Gaz Station -> Go to Super Market -> Go To Work -> Go to Cafe -> Go Home.\n");
 
-            Console.WriteLine("Start -> Go to Gaz Station -> Go to Super Market -> Go To Work -> Go to Cafe -> Go Home.\n");
-
-            Stack<string> backtrackingStack = new Stack<string>();
-            backtrackingStack.Push("Start");
-            backtrackingStack.Push("Go to Gaz Station");
-            backtrackingStack.Push("Go to Super Market");
-            backtrackingStack.Push("Go To Work");
-            backtrackingStack.Push("Go to Cafe");
-            backtrackingStack.Push("Go Home");
-
-
-            while(backtrackingStack.Count > 0)
-            {
-                Console.WriteLine("Back to: " + backtrackingStack.Pop());
-            }
+                        Stack<string> backtrackingStack = new Stack<string>();
+                        backtrackingStack.Push("Start");
+                        backtrackingStack.Push("Go to Gaz Station");
+                        backtrackingStack.Push("Go to Super Market");
+                        backtrackingStack.Push("Go To Work");
+                        backtrackingStack.Push("Go to Cafe");
+                        backtrackingStack.Push("Go Home");
 
 
+                        while(backtrackingStack.Count > 0)
+                        {
+                            Console.WriteLine("Back to: " + backtrackingStack.Pop());
+                        }
+            */
             #endregion
 
+            #region Problem 8: Implementing a Simple Task Scheduler
 
+            Queue<string> tasks = new Queue<string>();
+            tasks.Enqueue("Task 1");
+            tasks.Enqueue("Task 2");
+            tasks.Enqueue("Task 3");
+            tasks.Enqueue("Task 4");
+
+            while(tasks.Count > 0)
+            {
+                Console.WriteLine("Processing: " + tasks.Dequeue());
+            }
+
+            #endregion
 
 
 
