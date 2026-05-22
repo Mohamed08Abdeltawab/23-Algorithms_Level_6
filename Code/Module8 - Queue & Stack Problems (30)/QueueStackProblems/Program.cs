@@ -258,23 +258,34 @@ namespace QueueStackProblems // 1. browser back button
 
 
             #region Problem 12: Generate Binary Numbers
+            /*
+                        int n = 5;
+                        Queue<string> queue = new Queue<string>();
+                        queue.Enqueue("1");
 
-            int n = 5;
-            Queue<string> queue = new Queue<string>();
-            queue.Enqueue("1");
 
-
-            for (int i = 0; i < n; i++)
-            {
-                string binary = queue.Dequeue();
-                Console.WriteLine(binary);
-                queue.Enqueue(binary + "0");
-                queue.Enqueue(binary + "1");
-            }
-
+                        for (int i = 0; i < n; i++)
+                        {
+                            string binary = queue.Dequeue();
+                            Console.WriteLine(binary);
+                            queue.Enqueue(binary + "0");
+                            queue.Enqueue(binary + "1");
+                        }
+            */
             #endregion
 
 
+            #region Problem 13: Sort a Queue
+
+            Queue<int> originalQueue = new Queue<int>(new[] { 5,1,3,2,4 });
+            
+            List<int> tempList = new List<int>(originalQueue);
+            tempList.Sort();
+
+            Queue<int> sortedQueue = new Queue<int>(tempList);
+            Console.WriteLine("Original Queue: " + string.Join(", ", originalQueue));
+            Console.WriteLine("Sorted Queue: " + string.Join(", ", sortedQueue));
+            #endregion
 
 
 
