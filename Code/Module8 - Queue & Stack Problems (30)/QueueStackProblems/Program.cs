@@ -201,31 +201,56 @@ namespace QueueStackProblems // 1. browser back button
             #endregion
 
             #region Problem 11: Reverse a Queue
+            /*
+                        Queue<int> originalQueue = new Queue<int>();
+                        originalQueue.Enqueue(1);
+                        originalQueue.Enqueue(2);
+                        originalQueue.Enqueue(3);
+                        originalQueue.Enqueue(4);
+                        originalQueue.Enqueue(5);
 
-            Queue<int> originalQueue = new Queue<int>();
-            originalQueue.Enqueue(1);
-            originalQueue.Enqueue(2);
-            originalQueue.Enqueue(3);
-            originalQueue.Enqueue(4);
-            originalQueue.Enqueue(5);
+                        Console.WriteLine("Original Queue: " + string.Join(", ", originalQueue));
+
+
+                        Stack<int> tempStack = new Stack<int>();
+
+                        while(originalQueue.Count > 0)
+                        {
+                            tempStack.Push(originalQueue.Dequeue());
+                        }
+
+                        while(tempStack.Count > 0)
+                        {
+                            originalQueue.Enqueue(tempStack.Pop());
+                        }
+
+                        Console.WriteLine("Reversed Queue: " + string.Join(", ", originalQueue));
+            */
+            #endregion
+
+            #region Problem 11: Palindrome Queue
+
+            Queue<int> originalQueue = new Queue<int>(new [] { 1, 2, 3, 2, 1 });
 
             Console.WriteLine("Original Queue: " + string.Join(", ", originalQueue));
 
+            Stack<int> tempStack = new Stack<int>(originalQueue);
 
-            Stack<int> tempStack = new Stack<int>();
+            bool isPalindrome = true;
 
-            while(originalQueue.Count > 0)
+            foreach(var item in originalQueue)
             {
-                tempStack.Push(originalQueue.Dequeue());
+                if (tempStack.Pop() != item)
+                {
+                    isPalindrome = false;
+                    break;
+                }
             }
 
-            while(tempStack.Count > 0)
-            {
-                originalQueue.Enqueue(tempStack.Pop());
-            }
-
-            Console.WriteLine("Reversed Queue: " + string.Join(", ", originalQueue));
-
+            if (isPalindrome)
+                Console.WriteLine("The queue is a palindrome.");
+            else
+                Console.WriteLine("The queue is not a palindrome.");
 
             #endregion
 
@@ -243,8 +268,6 @@ namespace QueueStackProblems // 1. browser back button
 
 
 
-
         }
-
     }
 }
