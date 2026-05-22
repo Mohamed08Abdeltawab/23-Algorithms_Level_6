@@ -168,19 +168,37 @@ namespace QueueStackProblems // 1. browser back button
 
 
             #region Problem 9: Customer Service Simulation
+            /*
+                        Queue<string> ArrivedTime = new Queue<string>();
+                        ArrivedTime.Enqueue("customer1");
+                        ArrivedTime.Enqueue("customer2");
+                        ArrivedTime.Enqueue("customer3");
 
-            Queue<string> ArrivedTime = new Queue<string>();
-            ArrivedTime.Enqueue("customer1");
-            ArrivedTime.Enqueue("customer2");
-            ArrivedTime.Enqueue("customer3");
-
-            while(ArrivedTime.Count > 0)
-            {
-                Console.WriteLine("Serving: " + ArrivedTime.Dequeue());
-            }
-
+                        while(ArrivedTime.Count > 0)
+                        {
+                            Console.WriteLine("Serving: " + ArrivedTime.Dequeue());
+                        }
+            */
             #endregion
 
+
+            #region Problem 10: Web Page Request Handling - Solution
+
+            Queue<string> requests = new Queue<string>();
+            requests.Enqueue("Request1");
+            requests.Enqueue("Request2");
+            requests.Enqueue("Request3");
+
+
+            Console.WriteLine("Processing web requests:\n");
+            while (requests.Count > 0)
+            {
+                string currentRequest = requests.Dequeue();
+                Console.WriteLine($"Processed: {currentRequest}");
+            }
+
+
+            #endregion
 
 
 
