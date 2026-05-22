@@ -152,20 +152,34 @@ namespace QueueStackProblems // 1. browser back button
             #endregion
 
             #region Problem 8: Implementing a Simple Task Scheduler
+            /*
+                        Queue<string> tasks = new Queue<string>();
+                        tasks.Enqueue("Task 1");
+                        tasks.Enqueue("Task 2");
+                        tasks.Enqueue("Task 3");
+                        tasks.Enqueue("Task 4");
 
-            Queue<string> tasks = new Queue<string>();
-            tasks.Enqueue("Task 1");
-            tasks.Enqueue("Task 2");
-            tasks.Enqueue("Task 3");
-            tasks.Enqueue("Task 4");
+                        while(tasks.Count > 0)
+                        {
+                            Console.WriteLine("Processing: " + tasks.Dequeue());
+                        }
+            */
+            #endregion
 
-            while(tasks.Count > 0)
+
+            #region Problem 9: Customer Service Simulation
+
+            Queue<string> ArrivedTime = new Queue<string>();
+            ArrivedTime.Enqueue("customer1");
+            ArrivedTime.Enqueue("customer2");
+            ArrivedTime.Enqueue("customer3");
+
+            while(ArrivedTime.Count > 0)
             {
-                Console.WriteLine("Processing: " + tasks.Dequeue());
+                Console.WriteLine("Serving: " + ArrivedTime.Dequeue());
             }
 
             #endregion
-
 
 
 
