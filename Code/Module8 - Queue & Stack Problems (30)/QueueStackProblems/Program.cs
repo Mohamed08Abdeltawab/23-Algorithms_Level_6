@@ -183,19 +183,48 @@ namespace QueueStackProblems // 1. browser back button
 
 
             #region Problem 10: Web Page Request Handling - Solution
+            /*
+                        Queue<string> requests = new Queue<string>();
+                        requests.Enqueue("Request1");
+                        requests.Enqueue("Request2");
+                        requests.Enqueue("Request3");
 
-            Queue<string> requests = new Queue<string>();
-            requests.Enqueue("Request1");
-            requests.Enqueue("Request2");
-            requests.Enqueue("Request3");
+
+                        Console.WriteLine("Processing web requests:\n");
+                        while (requests.Count > 0)
+                        {
+                            string currentRequest = requests.Dequeue();
+                            Console.WriteLine($"Processed: {currentRequest}");
+                        }
+            */
+
+            #endregion
+
+            #region Problem 11: Reverse a Queue
+
+            Queue<int> originalQueue = new Queue<int>();
+            originalQueue.Enqueue(1);
+            originalQueue.Enqueue(2);
+            originalQueue.Enqueue(3);
+            originalQueue.Enqueue(4);
+            originalQueue.Enqueue(5);
+
+            Console.WriteLine("Original Queue: " + string.Join(", ", originalQueue));
 
 
-            Console.WriteLine("Processing web requests:\n");
-            while (requests.Count > 0)
+            Stack<int> tempStack = new Stack<int>();
+
+            while(originalQueue.Count > 0)
             {
-                string currentRequest = requests.Dequeue();
-                Console.WriteLine($"Processed: {currentRequest}");
+                tempStack.Push(originalQueue.Dequeue());
             }
+
+            while(tempStack.Count > 0)
+            {
+                originalQueue.Enqueue(tempStack.Pop());
+            }
+
+            Console.WriteLine("Reversed Queue: " + string.Join(", ", originalQueue));
 
 
             #endregion
