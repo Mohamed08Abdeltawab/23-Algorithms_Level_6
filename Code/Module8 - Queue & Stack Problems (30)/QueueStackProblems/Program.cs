@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -229,28 +231,46 @@ namespace QueueStackProblems // 1. browser back button
             #endregion
 
             #region Problem 11: Palindrome Queue
+            /*
+                        Queue<int> originalQueue = new Queue<int>(new [] { 1, 2, 3, 2, 1 });
 
-            Queue<int> originalQueue = new Queue<int>(new [] { 1, 2, 3, 2, 1 });
+                        Console.WriteLine("Original Queue: " + string.Join(", ", originalQueue));
 
-            Console.WriteLine("Original Queue: " + string.Join(", ", originalQueue));
+                        Stack<int> tempStack = new Stack<int>(originalQueue);
 
-            Stack<int> tempStack = new Stack<int>(originalQueue);
+                        bool isPalindrome = true;
 
-            bool isPalindrome = true;
+                        foreach(var item in originalQueue)
+                        {
+                            if (tempStack.Pop() != item)
+                            {
+                                isPalindrome = false;
+                                break;
+                            }
+                        }
 
-            foreach(var item in originalQueue)
+                        if (isPalindrome)
+                            Console.WriteLine("The queue is a palindrome.");
+                        else
+                            Console.WriteLine("The queue is not a palindrome.");
+            */
+            #endregion
+
+
+            #region Problem 12: Generate Binary Numbers
+
+            int n = 5;
+            Queue<string> queue = new Queue<string>();
+            queue.Enqueue("1");
+
+
+            for (int i = 0; i < n; i++)
             {
-                if (tempStack.Pop() != item)
-                {
-                    isPalindrome = false;
-                    break;
-                }
+                string binary = queue.Dequeue();
+                Console.WriteLine(binary);
+                queue.Enqueue(binary + "0");
+                queue.Enqueue(binary + "1");
             }
-
-            if (isPalindrome)
-                Console.WriteLine("The queue is a palindrome.");
-            else
-                Console.WriteLine("The queue is not a palindrome.");
 
             #endregion
 
