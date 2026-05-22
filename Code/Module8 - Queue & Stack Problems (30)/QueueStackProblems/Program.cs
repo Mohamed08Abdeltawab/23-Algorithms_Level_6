@@ -20,10 +20,35 @@ namespace QueueStackProblems // 1. browser back button
                         BrowserBackButton(BrowserHistory);
                         #endregion
             */
+            /*
+
             #region Problem 2: convert decimal to binary using stack
             Console.WriteLine(DecimalToBinary(10));
 
             #endregion
+*/
+
+            #region problem 4: queue for printer job
+            Queue<string> queue = new Queue<string>();
+            queue.Enqueue("a");
+            queue.Enqueue("b");
+            queue.Enqueue("c");
+            queue.Enqueue("d");
+            queue.Enqueue("e");
+            queue.Enqueue("f");
+
+            while (queue.Count > 0)
+            {
+                Console.WriteLine("processing..." + queue.Dequeue());
+                if (queue.Count > 0)
+                {
+                    Console.WriteLine("Next job: " + queue.Peek());
+                }
+            }
+
+
+            #endregion
+
 
         }
         static void BrowserBackButton(Stack<string> BrowserHistory)
