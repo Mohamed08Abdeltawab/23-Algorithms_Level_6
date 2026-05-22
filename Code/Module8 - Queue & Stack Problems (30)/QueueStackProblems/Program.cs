@@ -107,24 +107,46 @@ namespace QueueStackProblems // 1. browser back button
 
 
             #region Problem 6: Ticketing System Simulation - Solution
-            Queue<int> ticketQueue = new Queue<int>();
+            /*
+                        Queue<int> ticketQueue = new Queue<int>();
 
-            for(int i = 101; i <= 105; i++)
-            {
-                ticketQueue.Enqueue(i);
-            }
+                        for(int i = 101; i <= 105; i++)
+                        {
+                            ticketQueue.Enqueue(i);
+                        }
 
-            while(ticketQueue.Count > 0)
+                        while(ticketQueue.Count > 0)
+                        {
+                            Console.WriteLine("Processing Ticket: " + ticketQueue.Dequeue());
+                            if(ticketQueue.Count > 0)
+                            {
+                                Console.WriteLine("Remaining Tickets: " + string.Join(", ", ticketQueue));
+                            }
+                            else
+                            {
+                                Console.WriteLine("No more tickets in the queue");
+                            }
+                        }
+            */
+            #endregion
+
+
+            #region Problem 7: Implementing Simple Backtracking
+
+            Console.WriteLine("Start -> Go to Gaz Station -> Go to Super Market -> Go To Work -> Go to Cafe -> Go Home.\n");
+
+            Stack<string> backtrackingStack = new Stack<string>();
+            backtrackingStack.Push("Start");
+            backtrackingStack.Push("Go to Gaz Station");
+            backtrackingStack.Push("Go to Super Market");
+            backtrackingStack.Push("Go To Work");
+            backtrackingStack.Push("Go to Cafe");
+            backtrackingStack.Push("Go Home");
+
+
+            while(backtrackingStack.Count > 0)
             {
-                Console.WriteLine("Processing Ticket: " + ticketQueue.Dequeue());
-                if(ticketQueue.Count > 0)
-                {
-                    Console.WriteLine("Remaining Tickets: " + string.Join(", ", ticketQueue));
-                }
-                else
-                {
-                    Console.WriteLine("No more tickets in the queue");
-                }
+                Console.WriteLine("Back to: " + backtrackingStack.Pop());
             }
 
 
