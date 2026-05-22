@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Problem1 // 1. browser back button
+namespace QueueStackProblems // 1. browser back button
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Stack<string> BrowserHistory = new Stack<string>();
+            /*
+                        #region Problem 1: browser back button
+                        Stack<string> BrowserHistory = new Stack<string>();
+                        BrowserForwardButton(BrowserHistory, "www.google.com");
+                        BrowserForwardButton(BrowserHistory, "www.facebook.com");
+                        BrowserBackButton(BrowserHistory);
+                        BrowserForwardButton(BrowserHistory, "www.twitter.com");
+                        BrowserBackButton(BrowserHistory);
+                        #endregion
+            */
+            #region Problem 2: convert decimal to binary using stack
+            Console.WriteLine(DecimalToBinary(10));
 
-            BrowserForwardButton(BrowserHistory, "www.google.com");
-            BrowserForwardButton(BrowserHistory, "www.facebook.com");
-            BrowserBackButton(BrowserHistory);
-            BrowserForwardButton(BrowserHistory, "www.twitter.com");
-            BrowserBackButton(BrowserHistory);
+            #endregion
 
         }
         static void BrowserBackButton(Stack<string> BrowserHistory)
@@ -35,6 +42,18 @@ namespace Problem1 // 1. browser back button
         {
             BrowserHistory.Push(newPage);
             Console.WriteLine("\nOpening page: " + BrowserHistory.Peek());
+        }
+
+        static string DecimalToBinary(int decimalNumber)
+        {
+            Stack<int> binaryStack = new Stack<int>();
+            while (decimalNumber > 0)
+            {
+                int remainder = decimalNumber % 2;
+                binaryStack.Push(remainder);
+                decimalNumber /= 2;
+            }
+            return string.Join("", binaryStack);
         }
     }
 }
