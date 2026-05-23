@@ -276,17 +276,63 @@ namespace QueueStackProblems // 1. browser back button
 
 
             #region Problem 13: Sort a Queue
+            /*
+                        Queue<int> originalQueue = new Queue<int>(new[] { 5,1,3,2,4 });
 
-            Queue<int> originalQueue = new Queue<int>(new[] { 5,1,3,2,4 });
-            
-            List<int> tempList = new List<int>(originalQueue);
-            tempList.Sort();
+                        List<int> tempList = new List<int>(originalQueue);
+                        tempList.Sort();
 
-            Queue<int> sortedQueue = new Queue<int>(tempList);
-            Console.WriteLine("Original Queue: " + string.Join(", ", originalQueue));
-            Console.WriteLine("Sorted Queue: " + string.Join(", ", sortedQueue));
+                        Queue<int> sortedQueue = new Queue<int>(tempList);
+                        Console.WriteLine("Original Queue: " + string.Join(", ", originalQueue));
+                        Console.WriteLine("Sorted Queue: " + string.Join(", ", sortedQueue));
+            */
             #endregion
 
+            #region Problem 14: Interleave Queue Elements
+
+            Queue<int> queue = new Queue<int>(new[] { 1, 2, 3, 4, 5, 6 });
+            Console.WriteLine("Original Queue: " + string.Join(", ", queue));
+
+            int halfSize = queue.Count / 2;
+            
+            Stack<int> stack = new Stack<int>();
+            //stack 3,2,1
+            for(int i = 0; i < halfSize; i++)
+            {
+                stack.Push(queue.Dequeue());
+            }
+            //queue 4,5,6,3,2,1
+            while(stack.Count > 0)
+            {
+                queue.Enqueue(stack.Pop());
+            }
+
+            //queue 3,2,1,4,5,6
+            for (int i = 0; i < halfSize; i++)
+            {
+                queue.Enqueue(queue.Dequeue());
+            }
+
+            //stack 3,2,1
+            //queue 4,5,6
+            for (int i = 0; i < halfSize; i++)
+            {
+                stack.Push(queue.Dequeue());
+            }
+
+            //queue 5,6,1,4
+            //queue 6,1,4,2,5
+            //queue 1,4,2,5,3,6
+            while (stack.Count > 0)
+            {
+                queue.Enqueue(stack.Pop());
+                queue.Enqueue(queue.Dequeue());
+            }
+
+            Console.WriteLine("Interleaved Queue: " + string.Join(", ", queue));
+
+
+            #endregion
 
 
 
