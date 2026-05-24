@@ -289,7 +289,7 @@ namespace QueueStackProblems // 1. browser back button
             #endregion
 
             #region Problem 14: Interleave Queue Elements
-
+/*
             Queue<int> queue = new Queue<int>(new[] { 1, 2, 3, 4, 5, 6 });
             Console.WriteLine("Original Queue: " + string.Join(", ", queue));
 
@@ -330,10 +330,24 @@ namespace QueueStackProblems // 1. browser back button
             }
 
             Console.WriteLine("Interleaved Queue: " + string.Join(", ", queue));
-
+*/
 
             #endregion
 
+
+            #region Problem 15: Rotate a Queue
+
+            Queue<int> rotateQueue = new Queue<int>(new[] { 1, 2, 3, 4, 5 });
+            int k = 2;
+
+            Console.WriteLine("Original Queue: " + string.Join(", ", rotateQueue));
+
+            for(int i = 0; i< k; i++)
+            {
+                rotateQueue.Enqueue(rotateQueue.Dequeue());
+            }
+            Console.WriteLine("Rotated Queue: " + string.Join(", ", rotateQueue));
+            #endregion
 
 
 
