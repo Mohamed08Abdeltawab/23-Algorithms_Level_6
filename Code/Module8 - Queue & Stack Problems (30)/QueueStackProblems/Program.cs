@@ -336,7 +336,7 @@ namespace QueueStackProblems // 1. browser back button
 
 
             #region Problem 15: Rotate a Queue
-
+/*
             Queue<int> rotateQueue = new Queue<int>(new[] { 1, 2, 3, 4, 5 });
             int k = 2;
 
@@ -347,12 +347,13 @@ namespace QueueStackProblems // 1. browser back button
                 rotateQueue.Enqueue(rotateQueue.Dequeue());
             }
             Console.WriteLine("Rotated Queue: " + string.Join(", ", rotateQueue));
+*/
             #endregion
 
 
 
             #region Problem 16:  Merge Two Sorted Queues
-
+/*
             Queue<int> queue1 = new Queue<int>(new[] { 1, 3, 5 });
             Queue<int> queue2 = new Queue<int>(new[] { 2, 4, 6 });
 
@@ -386,7 +387,39 @@ namespace QueueStackProblems // 1. browser back button
             }
 
             Console.WriteLine("Merged Queue: " + string.Join(", ", mergedQueue));
+*/
             #endregion
+
+
+            #region Problem 17: First Non-Repeating Character in a Stream
+            Dictionary<char, int> charCount = new Dictionary<char, int>();
+            Queue<char> charQueue = new Queue<char>();
+
+            string input = "aabc";
+
+            Console.WriteLine("Input Stream: " + input);
+
+            foreach(char c in input)
+            {
+                //check if character is already in dictionary
+                if (!charCount.ContainsKey(c))
+                    charCount[c] = 0;
+
+                charCount[c]++;
+                charQueue.Enqueue(c);
+
+                //dequeue characters that have count greater than 1
+                while(charQueue.Count > 0 && charCount[charQueue.Peek()] > 1)
+                {
+                    charQueue.Dequeue();
+                }
+
+                Console.WriteLine(charQueue.Count > 0 ? charQueue.Peek().ToString() : "-");
+            }
+
+            
+            #endregion
+
 
 
 
