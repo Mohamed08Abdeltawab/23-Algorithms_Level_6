@@ -351,7 +351,42 @@ namespace QueueStackProblems // 1. browser back button
 
 
 
+            #region Problem 16:  Merge Two Sorted Queues
 
+            Queue<int> queue1 = new Queue<int>(new[] { 1, 3, 5 });
+            Queue<int> queue2 = new Queue<int>(new[] { 2, 4, 6 });
+
+            Console.WriteLine("Queue 1: " + string.Join(", ", queue1));
+            Console.WriteLine("Queue 2: " + string.Join(", ", queue2));
+
+            Queue<int> mergedQueue = new Queue<int>();
+
+            for(; queue1.Count > 0 && queue2.Count > 0;)
+            {
+                if(queue1.Peek() < queue2.Peek())
+                {
+                    mergedQueue.Enqueue(queue1.Dequeue());
+                }
+                else
+                {
+                    mergedQueue.Enqueue(queue2.Dequeue());
+                }
+            }
+
+            // If there are remaining elements in queue1
+            while(queue1.Count > 0)
+            {
+                mergedQueue.Enqueue(queue1.Dequeue());
+            }
+
+            // If there are remaining elements in queue2
+            while(queue2.Count > 0)
+            {
+                mergedQueue.Enqueue(queue2.Dequeue());
+            }
+
+            Console.WriteLine("Merged Queue: " + string.Join(", ", mergedQueue));
+            #endregion
 
 
 
