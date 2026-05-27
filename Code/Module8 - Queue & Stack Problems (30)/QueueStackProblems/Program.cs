@@ -425,51 +425,62 @@ namespace QueueStackProblems // 1. browser back button
             #endregion
 
             #region Problem 18: Queue using two stacks 
-/*
-            Stack<int> stack1 = new Stack<int>();
-            Stack<int> stack2 = new Stack<int>();
+            /*
+                        Stack<int> stack1 = new Stack<int>();
+                        Stack<int> stack2 = new Stack<int>();
 
-            //store income 
-            stack1.Push(1);
-            stack2.Push(2);
+                        //store income 
+                        stack1.Push(1);
+                        stack2.Push(2);
 
-            while(stack1.Count > 0)
-                stack2.Push(stack1.Pop());
+                        while(stack1.Count > 0)
+                            stack2.Push(stack1.Pop());
 
-            Console.WriteLine("Queue from stack1 and stack2: " + string.Join(", ", stack2));
-*/
+                        Console.WriteLine("Queue from stack1 and stack2: " + string.Join(", ", stack2));
+            */
 
             #endregion
 
 
             #region Problem 19: Rearrange Queue Alternately
+            /*
+                        //spet1: splite queue to two halves
+                        //step2: merge the havles alternately
+                        Queue<int> queue = new Queue<int>(new[] {1,2,3,4,5,6});
+                        Console.WriteLine("Queue after Alternately: " + string.Join(", ", queue));
 
-            //spet1: splite queue to two halves
-            //step2: merge the havles alternately
-            Queue<int> queue = new Queue<int>(new[] {1,2,3,4,5,6});
-            Console.WriteLine("Queue after Alternately: " + string.Join(", ", queue));
+                        List<int> list = new List<int>(queue);
+                        int n = list.Count;
+                        Queue<int> result = new Queue<int>();
 
-            List<int> list = new List<int>(queue);
-            int n = list.Count;
-            Queue<int> result = new Queue<int>();
+                        for(int i = 0; i < n / 2; i++)
+                        {
+                            result.Enqueue(list[i]);
+                            result.Enqueue(list[n - i -1]);
+                        }
 
-            for(int i = 0; i < n / 2; i++)
-            {
-                result.Enqueue(list[i]);
-                result.Enqueue(list[n - i -1]);
-            }
-
-            if(n%2 != 0)//if n was odd number so we not taken that in for loop so we aded in the last of result
-                result.Enqueue(list[n/2]);
+                        if(n%2 != 0)//if n was odd number so we not taken that in for loop so we aded in the last of result
+                            result.Enqueue(list[n/2]);
 
 
-            Console.WriteLine("Queue after Alternately: " + string.Join(", ", result));
-
+                        Console.WriteLine("Queue after Alternately: " + string.Join(", ", result));
+            */
 
             #endregion
 
 
+            #region Problem 20: Implement a Priority Queue
 
+            PriorityQueue pq = new PriorityQueue();
+            pq.Enqueue(10, 4);
+            pq.Enqueue(20,2);
+            pq.Enqueue(30,3);
+
+            Console.WriteLine(pq.Dequeue());
+
+
+
+            #endregion
 
 
 
@@ -477,6 +488,34 @@ namespace QueueStackProblems // 1. browser back button
 
         }
 
+        //problem20
+        public class PriorityQueue
+        {
+            SortedDictionary<int, Queue<int>> queue = new SortedDictionary<int, Queue<int>>();
 
+            public void Enqueue(int value, int priority)
+            {
+                if (!queue.ContainsKey(priority))
+                {
+                    queue[priority] = new Queue<int>();
+                }
+                queue[priority].Enqueue(value);
+            }
+
+
+            public int? Dequeue()
+            {
+                if(queue.Count == 0) return null;
+                //get highest priority 
+                int highestPriority = queue.Keys.Min();
+                int value = queue[highestPriority].Dequeue();
+                if (queue[highestPriority].Count == 0)
+                {
+                    queue.Remove(highestPriority);
+                }
+
+                return value;
+            }
+        }
     }
 }
