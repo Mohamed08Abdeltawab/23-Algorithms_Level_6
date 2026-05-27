@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -289,135 +290,154 @@ namespace QueueStackProblems // 1. browser back button
             #endregion
 
             #region Problem 14: Interleave Queue Elements
-/*
-            Queue<int> queue = new Queue<int>(new[] { 1, 2, 3, 4, 5, 6 });
-            Console.WriteLine("Original Queue: " + string.Join(", ", queue));
+            /*
+                        Queue<int> queue = new Queue<int>(new[] { 1, 2, 3, 4, 5, 6 });
+                        Console.WriteLine("Original Queue: " + string.Join(", ", queue));
 
-            int halfSize = queue.Count / 2;
-            
-            Stack<int> stack = new Stack<int>();
-            //stack 3,2,1
-            for(int i = 0; i < halfSize; i++)
-            {
-                stack.Push(queue.Dequeue());
-            }
-            //queue 4,5,6,3,2,1
-            while(stack.Count > 0)
-            {
-                queue.Enqueue(stack.Pop());
-            }
+                        int halfSize = queue.Count / 2;
 
-            //queue 3,2,1,4,5,6
-            for (int i = 0; i < halfSize; i++)
-            {
-                queue.Enqueue(queue.Dequeue());
-            }
+                        Stack<int> stack = new Stack<int>();
+                        //stack 3,2,1
+                        for(int i = 0; i < halfSize; i++)
+                        {
+                            stack.Push(queue.Dequeue());
+                        }
+                        //queue 4,5,6,3,2,1
+                        while(stack.Count > 0)
+                        {
+                            queue.Enqueue(stack.Pop());
+                        }
 
-            //stack 3,2,1
-            //queue 4,5,6
-            for (int i = 0; i < halfSize; i++)
-            {
-                stack.Push(queue.Dequeue());
-            }
+                        //queue 3,2,1,4,5,6
+                        for (int i = 0; i < halfSize; i++)
+                        {
+                            queue.Enqueue(queue.Dequeue());
+                        }
 
-            //queue 5,6,1,4
-            //queue 6,1,4,2,5
-            //queue 1,4,2,5,3,6
-            while (stack.Count > 0)
-            {
-                queue.Enqueue(stack.Pop());
-                queue.Enqueue(queue.Dequeue());
-            }
+                        //stack 3,2,1
+                        //queue 4,5,6
+                        for (int i = 0; i < halfSize; i++)
+                        {
+                            stack.Push(queue.Dequeue());
+                        }
 
-            Console.WriteLine("Interleaved Queue: " + string.Join(", ", queue));
-*/
+                        //queue 5,6,1,4
+                        //queue 6,1,4,2,5
+                        //queue 1,4,2,5,3,6
+                        while (stack.Count > 0)
+                        {
+                            queue.Enqueue(stack.Pop());
+                            queue.Enqueue(queue.Dequeue());
+                        }
+
+                        Console.WriteLine("Interleaved Queue: " + string.Join(", ", queue));
+            */
 
             #endregion
 
 
             #region Problem 15: Rotate a Queue
-/*
-            Queue<int> rotateQueue = new Queue<int>(new[] { 1, 2, 3, 4, 5 });
-            int k = 2;
+            /*
+                        Queue<int> rotateQueue = new Queue<int>(new[] { 1, 2, 3, 4, 5 });
+                        int k = 2;
 
-            Console.WriteLine("Original Queue: " + string.Join(", ", rotateQueue));
+                        Console.WriteLine("Original Queue: " + string.Join(", ", rotateQueue));
 
-            for(int i = 0; i< k; i++)
-            {
-                rotateQueue.Enqueue(rotateQueue.Dequeue());
-            }
-            Console.WriteLine("Rotated Queue: " + string.Join(", ", rotateQueue));
-*/
+                        for(int i = 0; i< k; i++)
+                        {
+                            rotateQueue.Enqueue(rotateQueue.Dequeue());
+                        }
+                        Console.WriteLine("Rotated Queue: " + string.Join(", ", rotateQueue));
+            */
             #endregion
 
 
 
             #region Problem 16:  Merge Two Sorted Queues
-/*
-            Queue<int> queue1 = new Queue<int>(new[] { 1, 3, 5 });
-            Queue<int> queue2 = new Queue<int>(new[] { 2, 4, 6 });
+            /*
+                        Queue<int> queue1 = new Queue<int>(new[] { 1, 3, 5 });
+                        Queue<int> queue2 = new Queue<int>(new[] { 2, 4, 6 });
 
-            Console.WriteLine("Queue 1: " + string.Join(", ", queue1));
-            Console.WriteLine("Queue 2: " + string.Join(", ", queue2));
+                        Console.WriteLine("Queue 1: " + string.Join(", ", queue1));
+                        Console.WriteLine("Queue 2: " + string.Join(", ", queue2));
 
-            Queue<int> mergedQueue = new Queue<int>();
+                        Queue<int> mergedQueue = new Queue<int>();
 
-            for(; queue1.Count > 0 && queue2.Count > 0;)
-            {
-                if(queue1.Peek() < queue2.Peek())
-                {
-                    mergedQueue.Enqueue(queue1.Dequeue());
-                }
-                else
-                {
-                    mergedQueue.Enqueue(queue2.Dequeue());
-                }
-            }
+                        for(; queue1.Count > 0 && queue2.Count > 0;)
+                        {
+                            if(queue1.Peek() < queue2.Peek())
+                            {
+                                mergedQueue.Enqueue(queue1.Dequeue());
+                            }
+                            else
+                            {
+                                mergedQueue.Enqueue(queue2.Dequeue());
+                            }
+                        }
 
-            // If there are remaining elements in queue1
-            while(queue1.Count > 0)
-            {
-                mergedQueue.Enqueue(queue1.Dequeue());
-            }
+                        // If there are remaining elements in queue1
+                        while(queue1.Count > 0)
+                        {
+                            mergedQueue.Enqueue(queue1.Dequeue());
+                        }
 
-            // If there are remaining elements in queue2
-            while(queue2.Count > 0)
-            {
-                mergedQueue.Enqueue(queue2.Dequeue());
-            }
+                        // If there are remaining elements in queue2
+                        while(queue2.Count > 0)
+                        {
+                            mergedQueue.Enqueue(queue2.Dequeue());
+                        }
 
-            Console.WriteLine("Merged Queue: " + string.Join(", ", mergedQueue));
-*/
+                        Console.WriteLine("Merged Queue: " + string.Join(", ", mergedQueue));
+            */
             #endregion
 
 
             #region Problem 17: First Non-Repeating Character in a Stream
-            Dictionary<char, int> charCount = new Dictionary<char, int>();
-            Queue<char> charQueue = new Queue<char>();
+            /*
+                        Dictionary<char, int> charCount = new Dictionary<char, int>();
+                        Queue<char> charQueue = new Queue<char>();
 
-            string input = "aabc";
+                        string input = "aabc";
 
-            Console.WriteLine("Input Stream: " + input);
+                        Console.WriteLine("Input Stream: " + input);
 
-            foreach(char c in input)
-            {
-                //check if character is already in dictionary
-                if (!charCount.ContainsKey(c))
-                    charCount[c] = 0;
+                        foreach(char c in input)
+                        {
+                            //check if character is already in dictionary
+                            if (!charCount.ContainsKey(c))
+                                charCount[c] = 0;
 
-                charCount[c]++;
-                charQueue.Enqueue(c);
+                            charCount[c]++;
+                            charQueue.Enqueue(c);
 
-                //dequeue characters that have count greater than 1
-                while(charQueue.Count > 0 && charCount[charQueue.Peek()] > 1)
-                {
-                    charQueue.Dequeue();
-                }
+                            //dequeue characters that have count greater than 1
+                            while(charQueue.Count > 0 && charCount[charQueue.Peek()] > 1)
+                            {
+                                charQueue.Dequeue();
+                            }
 
-                Console.WriteLine(charQueue.Count > 0 ? charQueue.Peek().ToString() : "-");
-            }
+                            //will print the first non-repeating character or "-" if there is none
+                            Console.WriteLine(charQueue.Count > 0 ? charQueue.Peek().ToString() : "-");
+                        }
+            */
 
+            #endregion
+
+            #region Problem 18: Queue using two stacks 
+
+            Stack<int> stack1 = new Stack<int>();
+            Stack<int> stack2 = new Stack<int>();
+
+            //store income 
+            stack1.Push(1);
+            stack2.Push(2);
+
+            while(stack1.Count > 0)
+                stack2.Push(stack1.Pop());
+
+            Console.WriteLine("Queue from stack1 and stack2: " + string.Join(", ", stack2));
             
+
             #endregion
 
 
@@ -428,5 +448,7 @@ namespace QueueStackProblems // 1. browser back button
 
 
         }
+
+        
     }
 }
