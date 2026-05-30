@@ -482,62 +482,76 @@ namespace QueueStackProblems // 1. browser back button
             #endregion
 
             #region Problem 21: Rearrange Even and Odd Elements
-/*
-            Queue<int> queue = new Queue<int>(new[] { 1, 2, 3, 4, 5, 6 });
-            Console.WriteLine("Original Queue: " + string.Join(", ", queue));
-            Queue<int> evenQueue = new Queue<int>();
-            Queue<int> oddQueue = new Queue<int>();
+            /*
+                        Queue<int> queue = new Queue<int>(new[] { 1, 2, 3, 4, 5, 6 });
+                        Console.WriteLine("Original Queue: " + string.Join(", ", queue));
+                        Queue<int> evenQueue = new Queue<int>();
+                        Queue<int> oddQueue = new Queue<int>();
 
-            while (queue.Count > 0)
-            {
-                int current = queue.Dequeue();
-                if (current % 2 == 0)
-                    evenQueue.Enqueue(current);
-                else
-                    oddQueue.Enqueue(current);
-            }
+                        while (queue.Count > 0)
+                        {
+                            int current = queue.Dequeue();
+                            if (current % 2 == 0)
+                                evenQueue.Enqueue(current);
+                            else
+                                oddQueue.Enqueue(current);
+                        }
 
-            while (evenQueue.Count > 0)
-                queue.Enqueue(evenQueue.Dequeue());
+                        while (evenQueue.Count > 0)
+                            queue.Enqueue(evenQueue.Dequeue());
 
-            
-            while (oddQueue.Count > 0)
-                queue.Enqueue(oddQueue.Dequeue());
 
-            Console.WriteLine("Rearranged Queue (Even followed by Odd): " + string.Join(", ", queue));
-*/
+                        while (oddQueue.Count > 0)
+                            queue.Enqueue(oddQueue.Dequeue());
+
+                        Console.WriteLine("Rearranged Queue (Even followed by Odd): " + string.Join(", ", queue));
+            */
 
             #endregion
 
 
             #region Problem 22: Clone a Queue Without Using Extra Space
+            /*
+                        Queue<int> queue = new Queue<int>(new[] { 1, 2, 3, 4});
+                        Console.WriteLine("Original Queue: " + string.Join(", ", queue));
+                        Queue<int> clonedQueue = new Queue<int>();
 
-            Queue<int> queue = new Queue<int>(new[] { 1, 2, 3, 4});
-            Console.WriteLine("Original Queue: " + string.Join(", ", queue));
-            Queue<int> clonedQueue = new Queue<int>();
+                        clonedQueue = CloneQueue(queue);
 
-            clonedQueue = CloneQueue(queue);
+                        Console.WriteLine("Cloned Queue: " + string.Join(", ", clonedQueue));
+            */
+            #endregion
 
-            Console.WriteLine("Cloned Queue: " + string.Join(", ", clonedQueue));
+            #region Problem 23: Find Middle Element in a Queue
+
+            Queue<int> queue = new Queue<int>(new[] { 1, 2, 3, 4, 5 });
+            List<int> tempList = new List<int>(queue);
+
+            int middleIndex = tempList.Count / 2;
+            int middleElement = tempList[middleIndex];
+            Console.WriteLine("Queue: " + string.Join(", ", queue));
+            Console.WriteLine("Middle Element: " + middleElement);
+
             #endregion
 
 
 
         }
+        /*
+                //problem 22: Clone a Queue Without Using Extra Space
+                static Queue<int> CloneQueue(Queue<int> originalQueue)
+                {
+                    if (originalQueue.Count == 0)
+                        return new Queue<int>();
 
-        static Queue<int> CloneQueue(Queue<int> originalQueue)
-        {
-            if (originalQueue.Count == 0)
-                return new Queue<int>();
-            
-           int current = originalQueue.Dequeue();
-           Queue<int> clonedQueue = CloneQueue(originalQueue);
-           originalQueue.Enqueue(current);
-           clonedQueue.Enqueue(current);
-           return clonedQueue;
-            
-        }
+                   int current = originalQueue.Dequeue();
+                   Queue<int> clonedQueue = CloneQueue(originalQueue);
+                   originalQueue.Enqueue(current);
+                   clonedQueue.Enqueue(current);
+                   return clonedQueue;
 
+                }
+        */
         /*
                 //problem20
                 public class PriorityQueue
