@@ -482,7 +482,7 @@ namespace QueueStackProblems // 1. browser back button
             #endregion
 
             #region Problem 21: Rearrange Even and Odd Elements
-
+/*
             Queue<int> queue = new Queue<int>(new[] { 1, 2, 3, 4, 5, 6 });
             Console.WriteLine("Original Queue: " + string.Join(", ", queue));
             Queue<int> evenQueue = new Queue<int>();
@@ -505,46 +505,71 @@ namespace QueueStackProblems // 1. browser back button
                 queue.Enqueue(oddQueue.Dequeue());
 
             Console.WriteLine("Rearranged Queue (Even followed by Odd): " + string.Join(", ", queue));
-
+*/
 
             #endregion
 
 
+            #region Problem 22: Clone a Queue Without Using Extra Space
+
+            Queue<int> queue = new Queue<int>(new[] { 1, 2, 3, 4});
+            Console.WriteLine("Original Queue: " + string.Join(", ", queue));
+            Queue<int> clonedQueue = new Queue<int>();
+
+            clonedQueue = CloneQueue(queue);
+
+            Console.WriteLine("Cloned Queue: " + string.Join(", ", clonedQueue));
+            #endregion
 
 
 
         }
 
-        //problem20
-        public class PriorityQueue
+        static Queue<int> CloneQueue(Queue<int> originalQueue)
         {
-            SortedDictionary<int, Queue<int>> queue = new SortedDictionary<int, Queue<int>>();
-
-            public void Enqueue(int value, int priority)
-            {
-                if (!queue.ContainsKey(priority))
-                {
-                    queue[priority] = new Queue<int>();
-                }
-                queue[priority].Enqueue(value);
-            }
-
-
-            public int? Dequeue()
-            {
-                if(queue.Count == 0) return null;
-                //get highest priority 
-                int highestPriority = queue.Keys.Min();
-                int value = queue[highestPriority].Dequeue();
-                //after dequeue the element if was the last in highest priority in queue
-                //will remove the queue because is become empty if not well keep it
-                if (queue[highestPriority].Count == 0)
-                {
-                    queue.Remove(highestPriority);
-                }
-
-                return value;
-            }
+            if (originalQueue.Count == 0)
+                return new Queue<int>();
+            
+           int current = originalQueue.Dequeue();
+           Queue<int> clonedQueue = CloneQueue(originalQueue);
+           originalQueue.Enqueue(current);
+           clonedQueue.Enqueue(current);
+           return clonedQueue;
+            
         }
+
+        /*
+                //problem20
+                public class PriorityQueue
+                {
+                    SortedDictionary<int, Queue<int>> queue = new SortedDictionary<int, Queue<int>>();
+
+                    public void Enqueue(int value, int priority)
+                    {
+                        if (!queue.ContainsKey(priority))
+                        {
+                            queue[priority] = new Queue<int>();
+                        }
+                        queue[priority].Enqueue(value);
+                    }
+
+
+                    public int? Dequeue()
+                    {
+                        if(queue.Count == 0) return null;
+                        //get highest priority 
+                        int highestPriority = queue.Keys.Min();
+                        int value = queue[highestPriority].Dequeue();
+                        //after dequeue the element if was the last in highest priority in queue
+                        //will remove the queue because is become empty if not well keep it
+                        if (queue[highestPriority].Count == 0)
+                        {
+                            queue.Remove(highestPriority);
+                        }
+
+                        return value;
+                    }
+                }
+        */
     }
 }
