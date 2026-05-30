@@ -626,61 +626,108 @@ namespace QueueStackProblems // 1. browser back button
 
 
             #region Problem 27: Evaluate a Postfix Expression
+            /*
+                        Stack<int> operandStack = new Stack<int>();
+                        string postfixExpression = "231*+9-";
 
-            Stack<int> operandStack = new Stack<int>();
-            string postfixExpression = "231*+9-";
-
-            foreach(char token in postfixExpression)
-            {
-                if (char.IsDigit(token))
-                {
-                    operandStack.Push(token - '0');
-                }
-                else
-                {
-                    int b = operandStack.Pop();
-                    int a = operandStack.Pop();
-                    if (operandStack.Count < 2)
-                    {
-                        Console.WriteLine("Invalid postfix expression.");
-                        return;
-                    }
-                    switch (token)
-                    {
-                        case '+':
-                            operandStack.Push(a + b);
-                            break;
-                        case '-':
-                            operandStack.Push(a - b);
-                            break;
-                        case '*':
-                            operandStack.Push(a * b);
-                            break;
-                        case '/':
-                            if (b == 0)
+                        foreach(char token in postfixExpression)
+                        {
+                            if (char.IsDigit(token))
                             {
-                                Console.WriteLine("Division by zero is not allowed.");
-                                return;
+                                operandStack.Push(token - '0');
                             }
-                            operandStack.Push(a / b);
-                            break;
-                    }
-                }
-            }
+                            else
+                            {
+                                int b = operandStack.Pop();
+                                int a = operandStack.Pop();
+                                if (operandStack.Count < 2)
+                                {
+                                    Console.WriteLine("Invalid postfix expression.");
+                                    return;
+                                }
+                                switch (token)
+                                {
+                                    case '+':
+                                        operandStack.Push(a + b);
+                                        break;
+                                    case '-':
+                                        operandStack.Push(a - b);
+                                        break;
+                                    case '*':
+                                        operandStack.Push(a * b);
+                                        break;
+                                    case '/':
+                                        if (b == 0)
+                                        {
+                                            Console.WriteLine("Division by zero is not allowed.");
+                                            return;
+                                        }
+                                        operandStack.Push(a / b);
+                                        break;
+                                }
+                            }
+                        }
 
-            if(operandStack.Count == 1)
-            {
-                Console.WriteLine("Result of postfix expression: " + operandStack.Pop());
-            }
-            else
-            {
-                Console.WriteLine("Invalid postfix expression.");
-            }
-
-
+                        if(operandStack.Count == 1)
+                        {
+                            Console.WriteLine("Result of postfix expression: " + operandStack.Pop());
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid postfix expression.");
+                        }
+            */
             #endregion
 
 
+            #region Problem 28: Basic Calculator
+
+            Stack<int> stack = new Stack<int>();
+            int result = 0, sign = 1, number = 0;
+
+            string expression = "1+(2-3)+4";
+
+
+            foreach (char c in expression)
+            {
+                if (char.IsDigit(c))
+                {
+                    number = number * 10 + (c - '0');
+                }
+                else if (c == '+')
+                {
+                    result += sign * number;
+                    number = 0;
+                    sign = 1;
+                }
+                else if (c == '-')
+                {
+                    result += sign * number;
+                    number = 0;
+                    sign = -1;
+                }
+                else if (c == '(')
+                {
+                    stack.Push(result);
+                    stack.Push(sign);
+                    result = 0;
+                    sign = 1;
+                }
+                else if (c == ')')
+                {
+                    result += sign * number;
+                    number = 0;
+                    result *= stack.Pop();
+                    result += stack.Pop();
+                }
+            }
+
+            result += sign * number;
+
+            Console.WriteLine("Result of expression: " + result);
+
+
+            #endregion
 
 
 
