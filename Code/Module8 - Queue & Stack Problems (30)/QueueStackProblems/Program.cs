@@ -523,14 +523,28 @@ namespace QueueStackProblems // 1. browser back button
             #endregion
 
             #region Problem 23: Find Middle Element in a Queue
+            /*
+                        Queue<int> queue = new Queue<int>(new[] { 1, 2, 3, 4, 5 });
+                        List<int> tempList = new List<int>(queue);
 
-            Queue<int> queue = new Queue<int>(new[] { 1, 2, 3, 4, 5 });
-            List<int> tempList = new List<int>(queue);
+                        int middleIndex = tempList.Count / 2;
+                        int middleElement = tempList[middleIndex];
+                        Console.WriteLine("Queue: " + string.Join(", ", queue));
+                        Console.WriteLine("Middle Element: " + middleElement);
+            */
+            #endregion
 
-            int middleIndex = tempList.Count / 2;
-            int middleElement = tempList[middleIndex];
-            Console.WriteLine("Queue: " + string.Join(", ", queue));
-            Console.WriteLine("Middle Element: " + middleElement);
+
+            #region Problem 24: Reverse a String
+
+            Stack<char> charStack = new Stack<char>(new[] { 'h', 'e', 'l', 'l', 'o' });
+
+            string reversedString = "";
+            while(charStack.Count > 0)
+            {
+                reversedString += charStack.Pop();
+            }
+            Console.WriteLine("Reversed String: " + reversedString);
 
             #endregion
 
