@@ -681,56 +681,101 @@ namespace QueueStackProblems // 1. browser back button
 
 
             #region Problem 28: Basic Calculator
+            /*
+                        Stack<int> stack = new Stack<int>();
+                        int result = 0, sign = 1, number = 0;
 
-            Stack<int> stack = new Stack<int>();
-            int result = 0, sign = 1, number = 0;
-
-            string expression = "1+(2-3)+4";
+                        string expression = "1+(2-3)+4";
 
 
-            foreach (char c in expression)
-            {
-                if (char.IsDigit(c))
-                {
-                    number = number * 10 + (c - '0');
-                }
-                else if (c == '+')
-                {
-                    result += sign * number;
-                    number = 0;
-                    sign = 1;
-                }
-                else if (c == '-')
-                {
-                    result += sign * number;
-                    number = 0;
-                    sign = -1;
-                }
-                else if (c == '(')
-                {
-                    stack.Push(result);
-                    stack.Push(sign);
-                    result = 0;
-                    sign = 1;
-                }
-                else if (c == ')')
-                {
-                    result += sign * number;
-                    number = 0;
-                    result *= stack.Pop();
-                    result += stack.Pop();
-                }
-            }
+                        foreach (char c in expression)
+                        {
+                            if (char.IsDigit(c))
+                            {
+                                number = number * 10 + (c - '0');
+                            }
+                            else if (c == '+')
+                            {
+                                result += sign * number;
+                                number = 0;
+                                sign = 1;
+                            }
+                            else if (c == '-')
+                            {
+                                result += sign * number;
+                                number = 0;
+                                sign = -1;
+                            }
+                            else if (c == '(')
+                            {
+                                stack.Push(result);
+                                stack.Push(sign);
+                                result = 0;
+                                sign = 1;
+                            }
+                            else if (c == ')')
+                            {
+                                result += sign * number;
+                                number = 0;
+                                result *= stack.Pop();
+                                result += stack.Pop();
+                            }
+                        }
 
-            result += sign * number;
+                        result += sign * number;
 
-            Console.WriteLine("Result of expression: " + result);
-
+                        Console.WriteLine("Result of expression: " + result);
+            */
 
             #endregion
 
 
+            #region Problem 29: Remove Invalid Parentheses
 
+            Stack<int> stack = new Stack<int>();
+            HashSet<int> invalidIndices = new HashSet<int>();
+
+            string s = "(()))";
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == '(')
+                {
+                    stack.Push(i);
+                }
+                else if (s[i] == ')')
+                {
+                    if (stack.Count == 0)
+                    {
+                        invalidIndices.Add(i);
+                    }
+                    else
+                    {
+                        stack.Pop();
+                    }
+                }
+            }
+
+
+            while (stack.Count > 0)
+            {
+                invalidIndices.Add(stack.Pop());
+            }
+
+
+            char[] result = new char[s.Length - invalidIndices.Count];
+            int index = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (!invalidIndices.Contains(i))
+                {
+                    result[index++] = s[i];
+                }
+            }
+
+            Console.WriteLine(new string(result));
+
+            #endregion
 
 
 
