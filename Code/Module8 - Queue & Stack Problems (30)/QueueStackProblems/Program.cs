@@ -596,32 +596,86 @@ namespace QueueStackProblems // 1. browser back button
 
 
             #region 26 Check palindrome using a stack 
+            /*
+                        Stack<char> charStack = new Stack<char>();
 
-            Stack<char> charStack = new Stack<char>();
+                        string input = "madam";
 
-            string input = "madam";
+                        foreach(var item in input)
+                        {
+                            charStack.Push(item);
+                        }
 
-            foreach(var item in input)
+                        bool isPalindrome = true;
+                        foreach(var item in input)
+                        {
+                            if (charStack.Pop() != item)
+                            {
+                                isPalindrome = false;
+                                break;
+                            }
+                        }
+
+                        if (isPalindrome)
+                            Console.WriteLine("The string is a palindrome.");
+                        else
+                            Console.WriteLine("The string is not a palindrome.");
+            */
+
+            #endregion
+
+
+            #region Problem 27: Evaluate a Postfix Expression
+
+            Stack<int> operandStack = new Stack<int>();
+            string postfixExpression = "231*+9-";
+
+            foreach(char token in postfixExpression)
             {
-                charStack.Push(item);
-            }
-
-            bool isPalindrome = true;
-            foreach(var item in input)
-            {
-                if (charStack.Pop() != item)
+                if (char.IsDigit(token))
                 {
-                    isPalindrome = false;
-                    break;
+                    operandStack.Push(token - '0');
+                }
+                else
+                {
+                    int b = operandStack.Pop();
+                    int a = operandStack.Pop();
+                    if (operandStack.Count < 2)
+                    {
+                        Console.WriteLine("Invalid postfix expression.");
+                        return;
+                    }
+                    switch (token)
+                    {
+                        case '+':
+                            operandStack.Push(a + b);
+                            break;
+                        case '-':
+                            operandStack.Push(a - b);
+                            break;
+                        case '*':
+                            operandStack.Push(a * b);
+                            break;
+                        case '/':
+                            if (b == 0)
+                            {
+                                Console.WriteLine("Division by zero is not allowed.");
+                                return;
+                            }
+                            operandStack.Push(a / b);
+                            break;
+                    }
                 }
             }
 
-            if (isPalindrome)
-                Console.WriteLine("The string is a palindrome.");
+            if(operandStack.Count == 1)
+            {
+                Console.WriteLine("Result of postfix expression: " + operandStack.Pop());
+            }
             else
-                Console.WriteLine("The string is not a palindrome.");
-
-
+            {
+                Console.WriteLine("Invalid postfix expression.");
+            }
 
 
             #endregion
