@@ -551,45 +551,76 @@ namespace QueueStackProblems // 1. browser back button
 
 
             #region Problem 25: Check Balanced Parentheses
+            /*
+                        Stack<char> parenthesesStack = new Stack<char>();
 
-            Stack<char> parenthesesStack = new Stack<char>();
+                        string input = "{[()]}";
+                        if(input.Length % 2 != 0)
+                        {
+                            Console.WriteLine("Parentheses are not balanced.");
+                            return;
+                        }
 
-            string input = "{[()]}";
-            if(input.Length % 2 != 0)
+                        foreach (var item in input)
+                        {
+                            if(item == '{' || item == '[' || item == '(')
+                            {
+                                parenthesesStack.Push(item);
+                            }
+                            else
+                            {
+                                if(parenthesesStack.Count == 0)
+                                {
+                                    Console.WriteLine("Parentheses are not balanced.");
+                                    return;
+                                }
+                                char top = parenthesesStack.Pop();
+                                if((item == '}' && top != '{') || (item == ']' && top != '[') || (item == ')' && top != '('))
+                                {
+                                    Console.WriteLine("Parentheses are not balanced.");
+                                    return;
+                                }
+                            }
+                        }
+                        if (parenthesesStack.Count == 0)
+                        {
+                            Console.WriteLine("Parentheses are balanced.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Parentheses are not balanced.");
+                        }
+            */
+
+            #endregion
+
+
+            #region 26 Check palindrome using a stack 
+
+            Stack<char> charStack = new Stack<char>();
+
+            string input = "madam";
+
+            foreach(var item in input)
             {
-                Console.WriteLine("Parentheses are not balanced.");
-                return;
+                charStack.Push(item);
             }
 
-            foreach (var item in input)
+            bool isPalindrome = true;
+            foreach(var item in input)
             {
-                if(item == '{' || item == '[' || item == '(')
+                if (charStack.Pop() != item)
                 {
-                    parenthesesStack.Push(item);
-                }
-                else
-                {
-                    if(parenthesesStack.Count == 0)
-                    {
-                        Console.WriteLine("Parentheses are not balanced.");
-                        return;
-                    }
-                    char top = parenthesesStack.Pop();
-                    if((item == '}' && top != '{') || (item == ']' && top != '[') || (item == ')' && top != '('))
-                    {
-                        Console.WriteLine("Parentheses are not balanced.");
-                        return;
-                    }
+                    isPalindrome = false;
+                    break;
                 }
             }
-            if (parenthesesStack.Count == 0)
-            {
-                Console.WriteLine("Parentheses are balanced.");
-            }
+
+            if (isPalindrome)
+                Console.WriteLine("The string is a palindrome.");
             else
-            {
-                Console.WriteLine("Parentheses are not balanced.");
-            }
+                Console.WriteLine("The string is not a palindrome.");
+
 
 
 
