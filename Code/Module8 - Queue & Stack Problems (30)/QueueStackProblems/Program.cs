@@ -536,17 +536,69 @@ namespace QueueStackProblems // 1. browser back button
 
 
             #region Problem 24: Reverse a String
+            /*
+                        Stack<char> charStack = new Stack<char>(new[] { 'h', 'e', 'l', 'l', 'o' });
 
-            Stack<char> charStack = new Stack<char>(new[] { 'h', 'e', 'l', 'l', 'o' });
+                        string reversedString = "";
+                        while(charStack.Count > 0)
+                        {
+                            reversedString += charStack.Pop();
+                        }
+                        Console.WriteLine("Reversed String: " + reversedString);
+            */
+            #endregion
 
-            string reversedString = "";
-            while(charStack.Count > 0)
+
+
+            #region Problem 25: Check Balanced Parentheses
+
+            Stack<char> parenthesesStack = new Stack<char>();
+
+            string input = "{[()]}";
+            if(input.Length % 2 != 0)
             {
-                reversedString += charStack.Pop();
+                Console.WriteLine("Parentheses are not balanced.");
+                return;
             }
-            Console.WriteLine("Reversed String: " + reversedString);
+
+            foreach (var item in input)
+            {
+                if(item == '{' || item == '[' || item == '(')
+                {
+                    parenthesesStack.Push(item);
+                }
+                else
+                {
+                    if(parenthesesStack.Count == 0)
+                    {
+                        Console.WriteLine("Parentheses are not balanced.");
+                        return;
+                    }
+                    char top = parenthesesStack.Pop();
+                    if((item == '}' && top != '{') || (item == ']' && top != '[') || (item == ')' && top != '('))
+                    {
+                        Console.WriteLine("Parentheses are not balanced.");
+                        return;
+                    }
+                }
+            }
+            if (parenthesesStack.Count == 0)
+            {
+                Console.WriteLine("Parentheses are balanced.");
+            }
+            else
+            {
+                Console.WriteLine("Parentheses are not balanced.");
+            }
+
+
 
             #endregion
+
+
+
+
+
 
 
 
