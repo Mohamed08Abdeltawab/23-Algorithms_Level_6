@@ -470,14 +470,41 @@ namespace QueueStackProblems // 1. browser back button
 
 
             #region Problem 20: Implement a Priority Queue
+            /*
+                        PriorityQueue pq = new PriorityQueue();
+                        pq.Enqueue(10, 4);
+                        pq.Enqueue(20,2);
+                        pq.Enqueue(30,3);
 
-            PriorityQueue pq = new PriorityQueue();
-            pq.Enqueue(10, 4);
-            pq.Enqueue(20,2);
-            pq.Enqueue(30,3);
+                        Console.WriteLine(pq.Dequeue());
+            */
 
-            Console.WriteLine(pq.Dequeue());
+            #endregion
 
+            #region Problem 21: Rearrange Even and Odd Elements
+
+            Queue<int> queue = new Queue<int>(new[] { 1, 2, 3, 4, 5, 6 });
+            Console.WriteLine("Original Queue: " + string.Join(", ", queue));
+            Queue<int> evenQueue = new Queue<int>();
+            Queue<int> oddQueue = new Queue<int>();
+
+            while (queue.Count > 0)
+            {
+                int current = queue.Dequeue();
+                if (current % 2 == 0)
+                    evenQueue.Enqueue(current);
+                else
+                    oddQueue.Enqueue(current);
+            }
+
+            while (evenQueue.Count > 0)
+                queue.Enqueue(evenQueue.Dequeue());
+
+            
+            while (oddQueue.Count > 0)
+                queue.Enqueue(oddQueue.Dequeue());
+
+            Console.WriteLine("Rearranged Queue (Even followed by Odd): " + string.Join(", ", queue));
 
 
             #endregion
@@ -509,6 +536,8 @@ namespace QueueStackProblems // 1. browser back button
                 //get highest priority 
                 int highestPriority = queue.Keys.Min();
                 int value = queue[highestPriority].Dequeue();
+                //after dequeue the element if was the last in highest priority in queue
+                //will remove the queue because is become empty if not well keep it
                 if (queue[highestPriority].Count == 0)
                 {
                     queue.Remove(highestPriority);
