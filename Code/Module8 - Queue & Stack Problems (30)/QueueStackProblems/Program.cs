@@ -731,7 +731,54 @@ namespace QueueStackProblems // 1. browser back button
 
 
             #region Problem 29: Remove Invalid Parentheses
+            /*
+                        Stack<int> stack = new Stack<int>();
+                        HashSet<int> invalidIndices = new HashSet<int>();
 
+                        string s = "(()))";
+
+                        for (int i = 0; i < s.Length; i++)
+                        {
+                            if (s[i] == '(')
+                            {
+                                stack.Push(i);
+                            }
+                            else if (s[i] == ')')
+                            {
+                                if (stack.Count == 0)
+                                {
+                                    invalidIndices.Add(i);
+                                }
+                                else
+                                {
+                                    stack.Pop();
+                                }
+                            }
+                        }
+
+
+                        while (stack.Count > 0)
+                        {
+                            invalidIndices.Add(stack.Pop());
+                        }
+
+
+                        char[] result = new char[s.Length - invalidIndices.Count];
+                        int index = 0;
+                        for (int i = 0; i < s.Length; i++)
+                        {
+                            if (!invalidIndices.Contains(i))
+                            {
+                                result[index++] = s[i];
+                            }
+                        }
+
+                        Console.WriteLine(new string(result));
+            */
+            #endregion
+
+
+            #region my solution problem 29
             Stack<int> stack = new Stack<int>();
             HashSet<int> invalidIndices = new HashSet<int>();
 
@@ -747,36 +794,33 @@ namespace QueueStackProblems // 1. browser back button
                 {
                     if (stack.Count == 0)
                     {
-                        invalidIndices.Add(i);
+                        invalidIndices.Add(i);// that is invalid operation
                     }
                     else
                     {
-                        stack.Pop();
+                        stack.Pop();//valid operation
                     }
                 }
             }
 
-
-            while (stack.Count > 0)
+            while (stack.Count > 0)//if there are still opening parentheses in stack that is wrong
             {
-                invalidIndices.Add(stack.Pop());
+                invalidIndices.Add(stack.Pop());//that is invalid operation
             }
 
-
+            //initialize result array with the size of valid parentheses 
             char[] result = new char[s.Length - invalidIndices.Count];
-            int index = 0;
+            int indexer = 0;//to keep track of result array index
             for (int i = 0; i < s.Length; i++)
             {
-                if (!invalidIndices.Contains(i))
+                if(!invalidIndices.Contains(i))// if the index is not in invalid indices that mean it is valid parentheses so we added into result
                 {
-                    result[index++] = s[i];
+                    result[indexer++] = s[i];
                 }
             }
 
             Console.WriteLine(new string(result));
-
             #endregion
-
 
 
         }
