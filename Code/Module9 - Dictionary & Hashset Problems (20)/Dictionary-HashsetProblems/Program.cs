@@ -68,28 +68,57 @@ namespace Dictionary_HashsetProblems
             #endregion
 
             #region Problem 4: Count Word Frequencies in a Text
+            /*
+                        Dictionary<string, int> WordFreq = new Dictionary<string, int>();
+                        string text = "Hello world! Hello everyone. Welcome to the world of programming.";
 
-            Dictionary<string, int> WordFreq = new Dictionary<string, int>();
-            string text = "Hello world! Hello everyone. Welcome to the world of programming.";
+                        string[] words = text.Split(new char[] { ' ', '.', ',', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
 
-            string[] words = text.Split(new char[] { ' ', '.', ',', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
+                        foreach(var word in words)
+                        {
+                            string lowerWord = word.ToLower();
+                            if (WordFreq.ContainsKey(lowerWord))
+                                WordFreq[lowerWord]++;
+                            else
+                                WordFreq[lowerWord] = 1;
+                        }
 
-            foreach(var word in words)
+                        Console.WriteLine("Word Frequencies:");
+                        foreach(var word in WordFreq)
+                        {
+                            Console.WriteLine($"Word: {word.Key}, Frequency: {word.Value}");
+                        }
+            */
+            #endregion
+
+
+            #region Problem 5: Phonebook Application
+
+            Dictionary<string, string> Phonebook = new Dictionary<string, string>()
             {
-                string lowerWord = word.ToLower();
-                if (WordFreq.ContainsKey(lowerWord))
-                    WordFreq[lowerWord]++;
-                else
-                    WordFreq[lowerWord] = 1;
-            }
+                {"Alice", "123-456-7890" },
+                {"Bob", "987-654-3210" },
+                {"Charlie", "555-555-5555" },
+                {"Diana", "111-222-3333" }
+            };
 
-            Console.WriteLine("Word Frequencies:");
-            foreach(var word in WordFreq)
-            {
-                Console.WriteLine($"Word: {word.Key}, Frequency: {word.Value}");
-            }
+            Console.WriteLine("Phonebook:");
+            Console.WriteLine($"Alice phone: {Phonebook["Alice"]}");
+            Console.WriteLine($"Bob phone: {Phonebook["Bob"]}");
+            Console.WriteLine($"Charlie phone: {Phonebook["Charlie"]}");
+            Console.WriteLine($"Diana phone: {Phonebook["Diana"]}");
+
+
 
             #endregion
+
+
+
+
+
+
+
+
 
         }
     }
