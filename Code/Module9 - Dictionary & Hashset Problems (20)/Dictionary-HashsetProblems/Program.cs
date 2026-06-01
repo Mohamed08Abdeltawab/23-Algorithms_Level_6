@@ -132,23 +132,39 @@ namespace Dictionary_HashsetProblems
 
 
             #region Problem 7: Check for Duplicate Entries in Real-Time
+            /*
+                        HashSet<char> UniqueEntries = new HashSet<char>();
+                        char[] chars = { 'a', 'b', 'c', 'a', 'd', 'e', 'b' };
 
-            HashSet<char> UniqueEntries = new HashSet<char>();
-            char[] chars = { 'a', 'b', 'c', 'a', 'd', 'e', 'b' };
+                        Console.WriteLine("Checking for duplicate entries:");
+                        foreach(var ch in chars)
+                        {
+                            if(!UniqueEntries.Add(ch))
+                                Console.WriteLine($"Duplicate entry found: {ch}");
+                            else
+                                Console.WriteLine($"Unique entry added: {ch}");
+                        }
 
-            Console.WriteLine("Checking for duplicate entries:");
-            foreach(var ch in chars)
-            {
-                if(!UniqueEntries.Add(ch))
-                    Console.WriteLine($"Duplicate entry found: {ch}");
-                else
-                    Console.WriteLine($"Unique entry added: {ch}");
-            }
-
-            Console.WriteLine("Unique characters in the set: " + string.Join(", ", UniqueEntries));
-
+                        Console.WriteLine("Unique characters in the set: " + string.Join(", ", UniqueEntries));
+            */
             #endregion
 
+
+            #region Problem 8: Dynamic Skill Matching
+
+            HashSet<string> RequiredSkills = new HashSet<string>() { "C#", "SQL", "JavaScript",};
+            HashSet<string> CandidateSkills = new HashSet<string>() { "C#", "SQL", "Python", };
+
+            Console.WriteLine("Required Skills: " + string.Join(", ", RequiredSkills));
+            Console.WriteLine("Candidate Skills: " + string.Join(", ", CandidateSkills));
+
+            // Check if candidate has all required skills
+            HashSet<string> matchingSkills = new HashSet<string>(RequiredSkills);
+            matchingSkills.IntersectWith(CandidateSkills);
+
+            Console.WriteLine("Matching Skills: " + string.Join(", ", matchingSkills));
+
+            #endregion
 
 
 
