@@ -151,7 +151,7 @@ namespace Dictionary_HashsetProblems
 
 
             #region Problem 8: Dynamic Skill Matching
-
+/*
             HashSet<string> RequiredSkills = new HashSet<string>() { "C#", "SQL", "JavaScript",};
             HashSet<string> CandidateSkills = new HashSet<string>() { "C#", "SQL", "Python", };
 
@@ -163,28 +163,59 @@ namespace Dictionary_HashsetProblems
             matchingSkills.IntersectWith(CandidateSkills);
 
             Console.WriteLine("Matching Skills: " + string.Join(", ", matchingSkills));
-
+*/
             #endregion
 
 
             #region Problem 9: Find the Frequency of Each Character
+            /*
+                        string input = "hello";
+                        Dictionary<char, int> charFrequency = new Dictionary<char, int>();
 
-            string input = "hello";
-            Dictionary<char, int> charFrequency = new Dictionary<char, int>();
+                        foreach(var ch in input)
+                        {
+                            if (charFrequency.ContainsKey(ch))
+                                charFrequency[ch]++;
+                            else
+                                charFrequency[ch] = 1;
+                        }
 
-            foreach(var ch in input)
+                        Console.WriteLine("Character Frequencies:");
+                        foreach(var entry in charFrequency)
+                        {
+                            Console.WriteLine($"{entry.Key}, {entry.Value}");
+                        }
+            */
+            #endregion
+
+
+            #region Problem 10: Find Longest Consecutive Sequence
+
+            int[] arr = new int[] { 100, 4, 200, 1, 3, 2 };
+            HashSet<int> set = new HashSet<int>(arr);
+            int longestStreak = 0;
+            //step1 : tract all numbers in the set
+            foreach (int num in set)
             {
-                if (charFrequency.ContainsKey(ch))
-                    charFrequency[ch]++;
-                else
-                    charFrequency[ch] = 1;
+                if (!set.Contains(num - 1))
+                {
+                    int currentNum = num;
+                    int currentStreak = 1;
+
+
+                    while (set.Contains(currentNum + 1))
+                    {
+                        currentNum++;
+                        currentStreak++;
+                    }
+
+
+                    longestStreak = Math.Max(longestStreak, currentStreak);
+                }
             }
 
-            Console.WriteLine("Character Frequencies:");
-            foreach(var entry in charFrequency)
-            {
-                Console.WriteLine($"{entry.Key}, {entry.Value}");
-            }
+            Console.WriteLine("Longest Consecutive Sequence Length: " + longestStreak);
+
 
 
             #endregion
