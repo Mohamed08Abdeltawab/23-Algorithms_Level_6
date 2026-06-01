@@ -93,29 +93,41 @@ namespace Dictionary_HashsetProblems
 
 
             #region Problem 5: Phonebook Application
+            /*
+                        Dictionary<string, string> Phonebook = new Dictionary<string, string>()
+                        {
+                            {"Alice", "123-456-7890" },
+                            {"Bob", "987-654-3210" },
+                            {"Charlie", "555-555-5555" },
+                            {"Diana", "111-222-3333" }
+                        };
 
-            Dictionary<string, string> Phonebook = new Dictionary<string, string>()
-            {
-                {"Alice", "123-456-7890" },
-                {"Bob", "987-654-3210" },
-                {"Charlie", "555-555-5555" },
-                {"Diana", "111-222-3333" }
-            };
-
-            Console.WriteLine("Phonebook:");
-            Console.WriteLine($"Alice phone: {Phonebook["Alice"]}");
-            Console.WriteLine($"Bob phone: {Phonebook["Bob"]}");
-            Console.WriteLine($"Charlie phone: {Phonebook["Charlie"]}");
-            Console.WriteLine($"Diana phone: {Phonebook["Diana"]}");
-
-
-
+                        Console.WriteLine("Phonebook:");
+                        Console.WriteLine($"Alice phone: {Phonebook["Alice"]}");
+                        Console.WriteLine($"Bob phone: {Phonebook["Bob"]}");
+                        Console.WriteLine($"Charlie phone: {Phonebook["Charlie"]}");
+                        Console.WriteLine($"Diana phone: {Phonebook["Diana"]}");
+            */
             #endregion
 
 
+            #region Problem 6: Track Unique Visitors to a Website
 
+            //uising hashset to track unique visitors
+            Dictionary<string, HashSet<string>> WebsiteVisitors = new Dictionary<string, HashSet<string>>()
+            {
+                {"http://example.com", new HashSet<string> {"mohamed", "Ali", "Ali"} },// HashSet will automatically handle duplicates
+                {"http://example.com/page1", new HashSet<string> {"Bob", "Diana", "Bob" } },
+                {"http://example.com/page2", new HashSet<string> {"Alice", "Charlie", "Diana", "Diana"} }
+            };
 
+            Console.WriteLine("Unique Visitors:");
+            foreach(var page in WebsiteVisitors)
+            {
+                Console.WriteLine($"Page: {page.Key}, Visitors: {string.Join(", ", page.Value)}");
+            }
 
+            #endregion
 
 
 
