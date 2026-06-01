@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -112,20 +113,39 @@ namespace Dictionary_HashsetProblems
 
 
             #region Problem 6: Track Unique Visitors to a Website
+            /*
+                        //uising hashset to track unique visitors
+                        Dictionary<string, HashSet<string>> WebsiteVisitors = new Dictionary<string, HashSet<string>>()
+                        {
+                            {"http://example.com", new HashSet<string> {"mohamed", "Ali", "Ali"} },// HashSet will automatically handle duplicates
+                            {"http://example.com/page1", new HashSet<string> {"Bob", "Diana", "Bob" } },
+                            {"http://example.com/page2", new HashSet<string> {"Alice", "Charlie", "Diana", "Diana"} }
+                        };
 
-            //uising hashset to track unique visitors
-            Dictionary<string, HashSet<string>> WebsiteVisitors = new Dictionary<string, HashSet<string>>()
-            {
-                {"http://example.com", new HashSet<string> {"mohamed", "Ali", "Ali"} },// HashSet will automatically handle duplicates
-                {"http://example.com/page1", new HashSet<string> {"Bob", "Diana", "Bob" } },
-                {"http://example.com/page2", new HashSet<string> {"Alice", "Charlie", "Diana", "Diana"} }
-            };
+                        Console.WriteLine("Unique Visitors:");
+                        foreach(var page in WebsiteVisitors)
+                        {
+                            Console.WriteLine($"Page: {page.Key}, Visitors: {string.Join(", ", page.Value)}");
+                        }
+            */
+            #endregion
 
-            Console.WriteLine("Unique Visitors:");
-            foreach(var page in WebsiteVisitors)
+
+            #region Problem 7: Check for Duplicate Entries in Real-Time
+
+            HashSet<char> UniqueEntries = new HashSet<char>();
+            char[] chars = { 'a', 'b', 'c', 'a', 'd', 'e', 'b' };
+
+            Console.WriteLine("Checking for duplicate entries:");
+            foreach(var ch in chars)
             {
-                Console.WriteLine($"Page: {page.Key}, Visitors: {string.Join(", ", page.Value)}");
+                if(!UniqueEntries.Add(ch))
+                    Console.WriteLine($"Duplicate entry found: {ch}");
+                else
+                    Console.WriteLine($"Unique entry added: {ch}");
             }
+
+            Console.WriteLine("Unique characters in the set: " + string.Join(", ", UniqueEntries));
 
             #endregion
 
