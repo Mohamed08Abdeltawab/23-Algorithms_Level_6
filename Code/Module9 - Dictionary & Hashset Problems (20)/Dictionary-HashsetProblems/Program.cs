@@ -50,23 +50,47 @@ namespace Dictionary_HashsetProblems
 
 
             #region Problem 3: Translate Words Between Languages
+            /*
+                        Dictionary<string, string> Translate = new Dictionary<string, string>()
+                        {
+                            {"Hello in Spanish", "Hola" },
+                            {"Goodbye in French", "Au revoir" },
+                            {"Thank you in German", "Danke" },
+                            {"Please in Italian", "Per favore" }
+                        };
 
-            Dictionary<string, string> Translate = new Dictionary<string, string>()
-            {
-                {"Hello in Spanish", "Hola" },
-                {"Goodbye in French", "Au revoir" },
-                {"Thank you in German", "Danke" },
-                {"Please in Italian", "Per favore" }
-            };
+                        Console.WriteLine("Translations:");
+                        foreach(var translation in Translate)
+                        {
+                            Console.WriteLine($"Phrase: {translation.Key}, Translation: {Translate[translation.Key]}");
+                        }
+            */
+            #endregion
 
-            Console.WriteLine("Translations:");
-            foreach(var translation in Translate)
+            #region Problem 4: Count Word Frequencies in a Text
+
+            Dictionary<string, int> WordFreq = new Dictionary<string, int>();
+            string text = "Hello world! Hello everyone. Welcome to the world of programming.";
+
+            string[] words = text.Split(new char[] { ' ', '.', ',', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach(var word in words)
             {
-                Console.WriteLine($"Phrase: {translation.Key}, Translation: {Translate[translation.Key]}");
+                string lowerWord = word.ToLower();
+                if (WordFreq.ContainsKey(lowerWord))
+                    WordFreq[lowerWord]++;
+                else
+                    WordFreq[lowerWord] = 1;
             }
 
+            Console.WriteLine("Word Frequencies:");
+            foreach(var word in WordFreq)
+            {
+                Console.WriteLine($"Word: {word.Key}, Frequency: {word.Value}");
+            }
 
             #endregion
+
         }
     }
 }
