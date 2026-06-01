@@ -167,6 +167,30 @@ namespace Dictionary_HashsetProblems
             #endregion
 
 
+            #region Problem 9: Find the Frequency of Each Character
+
+            string input = "hello";
+            Dictionary<char, int> charFrequency = new Dictionary<char, int>();
+
+            foreach(var ch in input)
+            {
+                if (charFrequency.ContainsKey(ch))
+                    charFrequency[ch]++;
+                else
+                    charFrequency[ch] = 1;
+            }
+
+            Console.WriteLine("Character Frequencies:");
+            foreach(var entry in charFrequency)
+            {
+                Console.WriteLine($"{entry.Key}, {entry.Value}");
+            }
+
+
+            #endregion
+
+
+
 
         }
     }
