@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -151,19 +152,19 @@ namespace Dictionary_HashsetProblems
 
 
             #region Problem 8: Dynamic Skill Matching
-/*
-            HashSet<string> RequiredSkills = new HashSet<string>() { "C#", "SQL", "JavaScript",};
-            HashSet<string> CandidateSkills = new HashSet<string>() { "C#", "SQL", "Python", };
+            /*
+                        HashSet<string> RequiredSkills = new HashSet<string>() { "C#", "SQL", "JavaScript",};
+                        HashSet<string> CandidateSkills = new HashSet<string>() { "C#", "SQL", "Python", };
 
-            Console.WriteLine("Required Skills: " + string.Join(", ", RequiredSkills));
-            Console.WriteLine("Candidate Skills: " + string.Join(", ", CandidateSkills));
+                        Console.WriteLine("Required Skills: " + string.Join(", ", RequiredSkills));
+                        Console.WriteLine("Candidate Skills: " + string.Join(", ", CandidateSkills));
 
-            // Check if candidate has all required skills
-            HashSet<string> matchingSkills = new HashSet<string>(RequiredSkills);
-            matchingSkills.IntersectWith(CandidateSkills);
+                        // Check if candidate has all required skills
+                        HashSet<string> matchingSkills = new HashSet<string>(RequiredSkills);
+                        matchingSkills.IntersectWith(CandidateSkills);
 
-            Console.WriteLine("Matching Skills: " + string.Join(", ", matchingSkills));
-*/
+                        Console.WriteLine("Matching Skills: " + string.Join(", ", matchingSkills));
+            */
             #endregion
 
 
@@ -190,33 +191,54 @@ namespace Dictionary_HashsetProblems
 
 
             #region Problem 10: Find Longest Consecutive Sequence
+            /*
+                        int[] arr = new int[] { 100, 4, 200, 1, 3, 2 };
+                        HashSet<int> set = new HashSet<int>(arr);
+                        int longestStreak = 0;
+                        //step1 : tract all numbers in the set
+                        foreach (int num in set)
+                        {
+                            if (!set.Contains(num - 1))
+                            {
+                                int currentNum = num;
+                                int currentStreak = 1;
 
-            int[] arr = new int[] { 100, 4, 200, 1, 3, 2 };
-            HashSet<int> set = new HashSet<int>(arr);
-            int longestStreak = 0;
-            //step1 : tract all numbers in the set
-            foreach (int num in set)
+
+                                while (set.Contains(currentNum + 1))
+                                {
+                                    currentNum++;
+                                    currentStreak++;
+                                }
+
+
+                                longestStreak = Math.Max(longestStreak, currentStreak);
+                            }
+                        }
+
+                        Console.WriteLine("Longest Consecutive Sequence Length: " + longestStreak);
+            */
+            #endregion
+
+            #region Problem 11: Find Majority Element
+
+            Dictionary<int, int> count = new Dictionary<int, int>();
+            int[] nums = new int[] { 2, 2, 1, 1, 1, 2, 2 };
+
+            foreach(int num in nums)
             {
-                if (!set.Contains(num - 1))
+                if(!count.ContainsKey(num))
+                    count[num] = 0;
+
+                count[num]++;
+
+                if (count[num] > nums.Length / 2)
                 {
-                    int currentNum = num;
-                    int currentStreak = 1;
-
-
-                    while (set.Contains(currentNum + 1))
-                    {
-                        currentNum++;
-                        currentStreak++;
-                    }
-
-
-                    longestStreak = Math.Max(longestStreak, currentStreak);
+                    Console.WriteLine("Majority Element: " + num);
+                    break;
                 }
+
+
             }
-
-            Console.WriteLine("Longest Consecutive Sequence Length: " + longestStreak);
-
-
 
             #endregion
 
