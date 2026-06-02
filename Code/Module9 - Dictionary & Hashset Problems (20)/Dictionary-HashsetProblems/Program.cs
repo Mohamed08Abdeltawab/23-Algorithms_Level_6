@@ -271,27 +271,87 @@ namespace Dictionary_HashsetProblems
 
 
             #region Problem 13: Find All Unique Elements
+            /*
+                        int[] arr = new int[] { 1, 2, 3, 4, 1, 2, 3, 4, 5 };
+                        Dictionary<int, int> Dublicates = new Dictionary<int, int>();
 
-            int[] arr = new int[] { 1, 2, 3, 4, 1, 2, 3, 4, 5 };
-            Dictionary<int, int> Dublicates = new Dictionary<int, int>();
+                        foreach (int num in arr)
+                        {
+                            if (Dublicates.ContainsKey(num))
+                            {
+                                Dublicates[num]++;
+                            }
+                            else
+                                Dublicates[num] = 1;
+                        }
 
-            foreach (int num in arr)
+                        //get unique elements with linq
+                        var uniqueElements = Dublicates.Where(x => x.Value == 1).Select(x => x.Key).ToList();
+
+                        Console.WriteLine("Unique Values: ");
+
+                        Console.WriteLine(string.Join(", ", uniqueElements));
+            */
+            #endregion
+
+
+            #region Problem 14: Find Words That Can Be Typed Using One Row of Keyboard
+            /*
+                        string[] words = new string[] { "Hello", "Alaska", "Dad", "Peace" };
+
+                        HashSet<char> row1 = new HashSet<char>("qwertyuiop");
+                        HashSet<char> row2 = new HashSet<char>("asdfghjkl");
+                        HashSet<char> row3 = new HashSet<char>("zxcvbnm");
+
+                        foreach(string word in words)
+                        {
+                            //condition
+                            if(word.ToLower().All(ch => row1.Contains(ch)) ||
+                               word.ToLower().All(ch => row2.Contains(ch)) ||
+                               word.ToLower().All(ch => row3.Contains(ch)))
+                            {
+                                Console.WriteLine(word);
+                            }
+                        }
+            */
+
+            string[] words = new string[] { "Hello", "Alaska", "Dad", "Peace" };
+            string[] rows = { "qwertyuiop", "asdfghjkl", "zxcvbnm" };
+            Dictionary<char, int> charRow = new Dictionary<char, int>();
+
+
+            //map each character to its corresponding row
+            for(int i = 0; i< rows.Length; i++)
             {
-                if (Dublicates.ContainsKey(num))
+                foreach (char ch in rows[i])//every character in spacific row by index
                 {
-                    Dublicates[num]++;
+                    charRow[ch] = i;
                 }
-                else
-                    Dublicates[num] = 1;
             }
 
-            //get unique elements with linq
-            var uniqueElements = Dublicates.Where(x => x.Value == 1).Select(x => x.Key).ToList();
+            List<string> result = new List<string>();
+            //map on words and check if all characters belong to the same row
+            foreach (string word in words)
+            {
+                int rowIndex = charRow[char.ToLower(word[0])]; //get the row index of the first character
+                bool isValid = true;
 
-            Console.WriteLine("Unique Values: ");
+                foreach(char ch in word)
+                {
+                    if (charRow[char.ToLower(ch)] != rowIndex)
+                    {
+                        isValid = false;
+                        break;
+                    }
+                }
 
-            Console.WriteLine(string.Join(", ", uniqueElements));
+                if (isValid)
+                {
+                    result.Add(word);
+                }
+            }
 
+            Console.WriteLine("Words that can be typed using one row of keyboard: " + string.Join(", ", result));
             #endregion
 
 
