@@ -220,7 +220,7 @@ namespace Dictionary_HashsetProblems
             #endregion
 
             #region Problem 11: Find Majority Element
-
+/*
             Dictionary<int, int> count = new Dictionary<int, int>();
             int[] nums = new int[] { 2, 2, 1, 1, 1, 2, 2 };
 
@@ -239,6 +239,33 @@ namespace Dictionary_HashsetProblems
 
 
             }
+*/
+            #endregion
+
+            #region Problem 12: Find Duplicate Elements
+
+            int[] arr = new int[] {1, 2, 3, 4,1, 2, 3, 4, 5};
+            Dictionary<int, int> Dublicates = new Dictionary<int, int>();
+
+            //HashSet<int> dubSet = new HashSet<int>();
+            foreach(int num in arr)
+            {
+                if (Dublicates.ContainsKey(num))
+                {
+                    Dublicates[num]++;
+                    //dubSet.Add(num);
+                }
+                else
+                    Dublicates[num] = 1;
+            }
+
+            //get dublicates with linq
+            var dublicatesvars = Dublicates.Where(x => x.Value > 1).Select(x => x.Key).ToList();
+
+            Console.WriteLine("Dublicates Values: ");
+            //Console.WriteLine(string.Join(", ", dubSet));
+
+            Console.WriteLine(string.Join(", ", dublicatesvars));
 
             #endregion
 
