@@ -296,6 +296,7 @@ namespace Dictionary_HashsetProblems
 
 
             #region Problem 14: Find Words That Can Be Typed Using One Row of Keyboard
+
             /*
                         string[] words = new string[] { "Hello", "Alaska", "Dad", "Peace" };
 
@@ -313,7 +314,7 @@ namespace Dictionary_HashsetProblems
                                 Console.WriteLine(word);
                             }
                         }
-            */
+            *//*
 
             string[] words = new string[] { "Hello", "Alaska", "Dad", "Peace" };
             string[] rows = { "qwertyuiop", "asdfghjkl", "zxcvbnm" };
@@ -352,10 +353,26 @@ namespace Dictionary_HashsetProblems
             }
 
             Console.WriteLine("Words that can be typed using one row of keyboard: " + string.Join(", ", result));
+*/
             #endregion
 
 
+            #region Problem 15: Find Missing Number in an Array
 
+            int[] arr = new int[] { 0,1,3 };
+            int n = arr.Length; // n is the length of the array, which is 3 in this case
+
+            HashSet<int> set = new HashSet<int>(arr);
+            for (int i = 0; i <= n; i++)
+            {
+                if (!set.Contains(i))
+                {
+                    Console.WriteLine("Missing Number: " + i);
+                    break;
+                }
+            }
+
+            #endregion
 
 
         }
