@@ -374,6 +374,40 @@ namespace Dictionary_HashsetProblems
 
             #endregion
 
+#region Problem 16: find common charcters in string 
+string[]words = new[] { "bella", "label", "roller" };
+int[] minFreq = new int[26];
+        Array.Fill(minFreq, int.MaxValue);
+
+
+        foreach (string word in words)
+        {
+            int[] charFreq = new int[26];
+            foreach (char c in word)
+            {
+                charFreq[c - 'a']++;
+            }
+
+
+            for (int i = 0; i < 26; i++)
+            {
+                minFreq[i] = Math.Min(minFreq[i], charFreq[i]);
+            }
+        }
+
+        List<string> result = new List<string>();
+        for (int i = 0; i < 26; i++)
+        {
+            for (int j = 0; j < minFreq[i]; j++)
+            {
+                result.Add(((char)(i + 'a')).ToString());
+            }
+        }
+
+         
+
+
+#endregion
 
         }
     }
