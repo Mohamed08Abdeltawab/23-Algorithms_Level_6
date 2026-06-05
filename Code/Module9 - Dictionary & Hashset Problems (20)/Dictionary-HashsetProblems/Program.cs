@@ -496,18 +496,45 @@ namespace Dictionary_HashsetProblems
 
 
             #region Problem 18: Find Numbers Disappeared in an Array
+            /*
+                        int [] arr = new int[] { 4, 3, 2, 7, 8, 2, 3, 1 };
+                        int n = arr.Length;
 
-            int [] arr = new int[] { 4, 3, 2, 7, 8, 2, 3, 1 };
-            int n = arr.Length;
+                        HashSet<int> set = new HashSet<int>(arr);
+                        for (int i = 1; i <= n; i++)
+                        {
+                            if(!set.Contains(i))
+                            {
+                                Console.WriteLine(i);
+                            }
+                        }
+            */
 
-            HashSet<int> set = new HashSet<int>(arr);
-            for (int i = 1; i <= n; i++)
-            {
-                if(!set.Contains(i))
-                {
-                    Console.WriteLine(i);
-                }
-            }
+            #endregion
+
+
+            #region Problem 19: Check if Two Arrays are Disjoint
+            int[] arr1 = new int[] { 1, 2, 3 };
+            int[] arr2 = new int[] { 4, 5, 6 };
+
+            HashSet<int> set = new HashSet<int>(arr1);
+
+            bool disjoint = !set.Overlaps(arr2);//check if there are any common elements between the set and arr2
+            Console.WriteLine("Are the two arrays disjoint? " + disjoint);
+
+            // Another way using logic
+            /*
+                        bool disjoint = true;
+                        foreach(int num in arr1)
+                        {
+                            if (arr2.Contains(num))
+                            {
+                                disjoint = false;
+                                break;
+                            }
+                        }
+                        Console.WriteLine("Are the two arrays disjoint? " + disjoint);
+            */
 
 
             #endregion
