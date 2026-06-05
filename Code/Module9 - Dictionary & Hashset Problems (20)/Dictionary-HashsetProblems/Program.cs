@@ -358,7 +358,7 @@ namespace Dictionary_HashsetProblems
 
 
             #region Problem 15: Find Missing Number in an Array
-
+/*
             int[] arr = new int[] { 0,1,3 };
             int n = arr.Length; // n is the length of the array, which is 3 in this case
 
@@ -371,43 +371,47 @@ namespace Dictionary_HashsetProblems
                     break;
                 }
             }
-
+*/
             #endregion
 
-#region Problem 16: find common charcters in string 
-string[]words = new[] { "bella", "label", "roller" };
-int[] minFreq = new int[26];
-        Array.Fill(minFreq, int.MaxValue);
+            #region Problem 16: find common charcters in string 
 
+            string[] words = new string[] { "bella", "label", "roller" };
 
-        foreach (string word in words)
-        {
-            int[] charFreq = new int[26];
-            foreach (char c in word)
+            int[] minFreq = new int[26];
+
+            for (int i = 0; i < minFreq.Length; i++)
             {
-                charFreq[c - 'a']++;
+                minFreq[i] = int.MaxValue;
             }
 
+            foreach (string word in words)
+            {
+                int[] charFreq = new int[26];
+                foreach (char c in word)
+                {
+                    charFreq[c - 'a']++;
+                }
 
+
+                for (int i = 0; i < 26; i++)
+                {
+                    minFreq[i] = Math.Min(minFreq[i], charFreq[i]);
+                }
+            }
+
+            List<string> result = new List<string>();
             for (int i = 0; i < 26; i++)
             {
-                minFreq[i] = Math.Min(minFreq[i], charFreq[i]);
+                for (int j = 0; j < minFreq[i]; j++)
+                {
+                    result.Add(((char)(i + 'a')).ToString());
+                }
             }
-        }
 
-        List<string> result = new List<string>();
-        for (int i = 0; i < 26; i++)
-        {
-            for (int j = 0; j < minFreq[i]; j++)
-            {
-                result.Add(((char)(i + 'a')).ToString());
-            }
-        }
+            Console.WriteLine("Common characters: " + string.Join(", ", result));
 
-         
-
-
-#endregion
+            #endregion
 
         }
     }
