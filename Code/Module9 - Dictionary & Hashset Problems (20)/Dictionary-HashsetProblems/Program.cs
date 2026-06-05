@@ -415,57 +415,81 @@ namespace Dictionary_HashsetProblems
 
 
             // Another way using dictionary
+            /*
+                        string[] words = new string[] { "bella", "label", "roller" };
+                        Dictionary<char, int> common = new Dictionary<char, int>();//for first word 
 
-            string[] words = new string[] { "bella", "label", "roller" };
-            Dictionary<char, int> common = new Dictionary<char, int>();//for first word 
+                        foreach(char c in words[0])
+                        {
+                            if (common.ContainsKey(c))
+                                common[c]++;
+                            else
+                                common[c] = 1;
+                        }
 
-            foreach(char c in words[0])
-            {
-                if (common.ContainsKey(c))
-                    common[c]++;
-                else
-                    common[c] = 1;
-            }
+                        //for each word after the first one we will update the common dictionary
+                        for(int i = 1; i< words.Length; i++)
+                        {
+                            Dictionary<char, int> current = new Dictionary<char, int>();//for current word after the first one
 
-            //for each word after the first one we will update the common dictionary
-            for(int i = 1; i< words.Length; i++)
-            {
-                Dictionary<char, int> current = new Dictionary<char, int>();//for current word after the first one
-
-                foreach(char c in words[i])
-                {
-                    if (current.ContainsKey(c))
-                        current[c]++;
-                    else
-                        current[c] = 1;
-                }
+                            foreach(char c in words[i])
+                            {
+                                if (current.ContainsKey(c))
+                                    current[c]++;
+                                else
+                                    current[c] = 1;
+                            }
 
 
-                foreach(char key in common.Keys.ToList())
-                {
-                    if (current.ContainsKey(key))
-                    {
-                        common[key] = Math.Min(common[key], current[key]);//update the value of common dictionary to be the minimum value between the current word and the previous common value
-                    }
-                    else
-                    {
-                        common[key] = 0;//if the current word does not contain the key we will set its value to 0 in common dictionary
-                    }
-                }
-            }
+                            foreach(char key in common.Keys.ToList())
+                            {
+                                if (current.ContainsKey(key))
+                                {
+                                    common[key] = Math.Min(common[key], current[key]);//update the value of common dictionary to be the minimum value between the current word and the previous common value
+                                }
+                                else
+                                {
+                                    common[key] = 0;//if the current word does not contain the key we will set its value to 0 in common dictionary
+                                }
+                            }
+                        }
 
-            List<string> result = new List<string>();
+                        List<string> result = new List<string>();
 
-            foreach(var entry in common)
-            {
-                for(int i = 0; i < entry.Value; i++)
-                {
-                    result.Add(entry.Key.ToString());
-                }
-            }
+                        foreach(var entry in common)
+                        {
+                            for(int i = 0; i < entry.Value; i++)
+                            {
+                                result.Add(entry.Key.ToString());
+                            }
+                        }
 
-            Console.WriteLine("Common characters: " + string.Join(", ", result));
+                        Console.WriteLine("Common characters: " + string.Join(", ", result));
+            */
 
+            #endregion
+
+
+            #region Problem 17: Find Elements Not in the Second Array
+
+            int[] arr1 = new int[] { 1, 2, 3, 4, 5 };
+            int[] arr2 = new int[] { 4, 5, 6, 7, 8 };
+            HashSet<int> set = new HashSet<int>(arr1);
+
+            set.ExceptWith(arr2);//remove all elements in arr2 from the set
+
+            Console.WriteLine("Elements in arr1 that are not in arr2: " + string.Join(", ", set));
+
+            // Another way using logic 
+            /*
+                        List<int> result = new List<int>();
+                        foreach(int num in arr1)
+                        {
+                            if (!arr2.Contains(num))
+                                result.Add(num);
+                        }
+                        Console.WriteLine("Elements in arr1 that are not in arr2: " + string.Join(", ", result));
+            */
 
             #endregion
 
