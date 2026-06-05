@@ -471,25 +471,44 @@ namespace Dictionary_HashsetProblems
 
 
             #region Problem 17: Find Elements Not in the Second Array
-
-            int[] arr1 = new int[] { 1, 2, 3, 4, 5 };
-            int[] arr2 = new int[] { 4, 5, 6, 7, 8 };
-            HashSet<int> set = new HashSet<int>(arr1);
-
-            set.ExceptWith(arr2);//remove all elements in arr2 from the set
-
-            Console.WriteLine("Elements in arr1 that are not in arr2: " + string.Join(", ", set));
-
-            // Another way using logic 
             /*
-                        List<int> result = new List<int>();
-                        foreach(int num in arr1)
-                        {
-                            if (!arr2.Contains(num))
-                                result.Add(num);
-                        }
-                        Console.WriteLine("Elements in arr1 that are not in arr2: " + string.Join(", ", result));
+                        int[] arr1 = new int[] { 1, 2, 3, 4, 5 };
+                        int[] arr2 = new int[] { 4, 5, 6, 7, 8 };
+                        HashSet<int> set = new HashSet<int>(arr1);
+
+                        set.ExceptWith(arr2);//remove all elements in arr2 from the set
+
+                        Console.WriteLine("Elements in arr1 that are not in arr2: " + string.Join(", ", set));
+
+                        // Another way using logic 
+                        *//*
+                                    List<int> result = new List<int>();
+                                    foreach(int num in arr1)
+                                    {
+                                        if (!arr2.Contains(num))
+                                            result.Add(num);
+                                    }
+                                    Console.WriteLine("Elements in arr1 that are not in arr2: " + string.Join(", ", result));
+                        *//*
+                        Console.ReadLine();
             */
+            #endregion
+
+
+            #region Problem 18: Find Numbers Disappeared in an Array
+
+            int [] arr = new int[] { 4, 3, 2, 7, 8, 2, 3, 1 };
+            int n = arr.Length;
+
+            HashSet<int> set = new HashSet<int>(arr);
+            for (int i = 1; i <= n; i++)
+            {
+                if(!set.Contains(i))
+                {
+                    Console.WriteLine(i);
+                }
+            }
+
 
             #endregion
 
