@@ -358,58 +358,114 @@ namespace Dictionary_HashsetProblems
 
 
             #region Problem 15: Find Missing Number in an Array
-/*
-            int[] arr = new int[] { 0,1,3 };
-            int n = arr.Length; // n is the length of the array, which is 3 in this case
+            /*
+                        int[] arr = new int[] { 0,1,3 };
+                        int n = arr.Length; // n is the length of the array, which is 3 in this case
 
-            HashSet<int> set = new HashSet<int>(arr);
-            for (int i = 0; i <= n; i++)
-            {
-                if (!set.Contains(i))
-                {
-                    Console.WriteLine("Missing Number: " + i);
-                    break;
-                }
-            }
-*/
+                        HashSet<int> set = new HashSet<int>(arr);
+                        for (int i = 0; i <= n; i++)
+                        {
+                            if (!set.Contains(i))
+                            {
+                                Console.WriteLine("Missing Number: " + i);
+                                break;
+                            }
+                        }
+            */
             #endregion
 
             #region Problem 16: find common charcters in string 
+            /*
+                        string[] words = new string[] { "bella", "label", "roller" };
+
+                        int[] minFreq = new int[26];
+
+                        for (int i = 0; i < minFreq.Length; i++)
+                        {
+                            minFreq[i] = int.MaxValue;
+                        }
+
+                        foreach (string word in words)
+                        {
+                            int[] charFreq = new int[26];
+                            foreach (char c in word)
+                            {
+                                charFreq[c - 'a']++;//adding value of current character by 1
+                            }
+
+
+                            for (int i = 0; i < 26; i++)
+                            {
+                                minFreq[i] = Math.Min(minFreq[i], charFreq[i]);//get the minimum value for each character for each word there a character changed
+                            }
+                        }
+
+                        List<string> result = new List<string>();
+                        for (int i = 0; i < 26; i++)
+                        {
+                            for (int j = 0; j < minFreq[i]; j++)
+                            {
+                                result.Add(((char)(i + 'a')).ToString());
+                            }
+                        }
+
+                        Console.WriteLine("Common characters: " + string.Join(", ", result));
+            */
+
+
+
+            // Another way using dictionary
 
             string[] words = new string[] { "bella", "label", "roller" };
+            Dictionary<char, int> common = new Dictionary<char, int>();//for first word 
 
-            int[] minFreq = new int[26];
-
-            for (int i = 0; i < minFreq.Length; i++)
+            foreach(char c in words[0])
             {
-                minFreq[i] = int.MaxValue;
+                if (common.ContainsKey(c))
+                    common[c]++;
+                else
+                    common[c] = 1;
             }
 
-            foreach (string word in words)
+            //for each word after the first one we will update the common dictionary
+            for(int i = 1; i< words.Length; i++)
             {
-                int[] charFreq = new int[26];
-                foreach (char c in word)
+                Dictionary<char, int> current = new Dictionary<char, int>();//for current word after the first one
+
+                foreach(char c in words[i])
                 {
-                    charFreq[c - 'a']++;
+                    if (current.ContainsKey(c))
+                        current[c]++;
+                    else
+                        current[c] = 1;
                 }
 
 
-                for (int i = 0; i < 26; i++)
+                foreach(char key in common.Keys.ToList())
                 {
-                    minFreq[i] = Math.Min(minFreq[i], charFreq[i]);
+                    if (current.ContainsKey(key))
+                    {
+                        common[key] = Math.Min(common[key], current[key]);//update the value of common dictionary to be the minimum value between the current word and the previous common value
+                    }
+                    else
+                    {
+                        common[key] = 0;//if the current word does not contain the key we will set its value to 0 in common dictionary
+                    }
                 }
             }
 
             List<string> result = new List<string>();
-            for (int i = 0; i < 26; i++)
+
+            foreach(var entry in common)
             {
-                for (int j = 0; j < minFreq[i]; j++)
+                for(int i = 0; i < entry.Value; i++)
                 {
-                    result.Add(((char)(i + 'a')).ToString());
+                    result.Add(entry.Key.ToString());
                 }
             }
 
             Console.WriteLine("Common characters: " + string.Join(", ", result));
+
 
             #endregion
 
