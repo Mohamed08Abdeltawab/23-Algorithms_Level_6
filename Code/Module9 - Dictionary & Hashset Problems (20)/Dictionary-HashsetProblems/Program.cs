@@ -514,28 +514,51 @@ namespace Dictionary_HashsetProblems
 
 
             #region Problem 19: Check if Two Arrays are Disjoint
-            int[] arr1 = new int[] { 1, 2, 3 };
-            int[] arr2 = new int[] { 4, 5, 6 };
-
-            HashSet<int> set = new HashSet<int>(arr1);
-
-            bool disjoint = !set.Overlaps(arr2);//check if there are any common elements between the set and arr2
-            Console.WriteLine("Are the two arrays disjoint? " + disjoint);
-
-            // Another way using logic
             /*
-                        bool disjoint = true;
-                        foreach(int num in arr1)
-                        {
-                            if (arr2.Contains(num))
-                            {
-                                disjoint = false;
-                                break;
-                            }
-                        }
-                        Console.WriteLine("Are the two arrays disjoint? " + disjoint);
-            */
+                        int[] arr1 = new int[] { 1, 2, 3 };
+                        int[] arr2 = new int[] { 4, 5, 6 };
 
+                        HashSet<int> set = new HashSet<int>(arr1);
+
+                        bool disjoint = !set.Overlaps(arr2);//check if there are any common elements between the set and arr2
+                        Console.WriteLine("Are the two arrays disjoint? " + disjoint);
+
+                        // Another way using logic
+                        *//*
+                                    bool disjoint = true;
+                                    foreach(int num in arr1)
+                                    {
+                                        if (arr2.Contains(num))
+                                        {
+                                            disjoint = false;
+                                            break;
+                                        }
+                                    }
+                                    Console.WriteLine("Are the two arrays disjoint? " + disjoint);
+                        *//*
+                        Console.ReadLine();
+            */
+            #endregion
+
+
+            #region Problem 20: Check If a Sentence Is Pangram
+            HashSet<char> alphabet = new HashSet<char>();
+            string sentence = "The quick brown fox jumps over the lazy dog";
+
+            bool[] isContain = new bool[26];
+
+            foreach(char ch in sentence.ToLower())
+            {
+                if (char.IsLetter(ch))
+                {
+                    alphabet.Add(ch);
+                }
+            }
+
+            if(alphabet.Count == 26)
+                Console.WriteLine("The sentence is a pangram.");
+            else 
+                Console.WriteLine("The sentence is not a pangram.");
 
             #endregion
 
