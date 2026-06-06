@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Problem4_Remove_Elements_Greater_Than_a_Value
+namespace Problem5_Find_Elements_Less_Than_a_Value
 {
     internal class Program
     {
@@ -13,9 +13,9 @@ namespace Problem4_Remove_Elements_Greater_Than_a_Value
             SortedSet<int> set = new SortedSet<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             int value = 3;
 
-            for (int i = 0;i< set.Count;i++)
+            for (int i = 0; i < set.Count; i++)
             {
-                if (value > set.ElementAt(i))
+                if (value < set.ElementAt(i))
                 {
                     set.Remove(set.ElementAt(i));
                     i--; // Adjust the index after removal
@@ -24,7 +24,7 @@ namespace Problem4_Remove_Elements_Greater_Than_a_Value
             Console.WriteLine(string.Join(", ", set));
 
             // or using getviewbetween
-            set = set.GetViewBetween(value, set.Max);
+            set = set.GetViewBetween(set.Min, value);
             Console.WriteLine(string.Join(", ", set));
         }
     }
