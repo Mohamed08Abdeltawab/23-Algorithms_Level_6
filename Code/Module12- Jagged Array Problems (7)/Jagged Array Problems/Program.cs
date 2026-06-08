@@ -121,7 +121,7 @@ namespace Jagged_Array_Problems
             {
                 new string[] { "Yes", "No", "Yes" }, // Product 1
                 new string[] { "No", "Yes" },      // Product 2
-        };
+            }; 
 
             for (int i = 0; i < jag6.Length; i++)
             {
@@ -129,6 +129,28 @@ namespace Jagged_Array_Problems
                 foreach (var response in jag6[i])
                 {
                     Console.Write($"{response} ");
+                }
+                Console.WriteLine();
+            }
+
+            #endregion
+
+
+            #region Problem 7: City Temperature Data
+
+            Console.WriteLine("====== Problem 7 ======");
+            double[][] jag7 = new double[][]
+            {
+                new double[] { 23.5, 25.0, 22.8 }, // City 1
+                new double[] { 18.2, 19.5 },      // City 2
+            };
+
+            for (int i = 0; i < jag7.Length; i++)
+            {
+                Console.Write($"City {i + 1}: ");
+                foreach (var temperature in jag7[i])
+                {
+                    Console.Write($"{temperature} ");
                 }
                 Console.WriteLine();
             }
