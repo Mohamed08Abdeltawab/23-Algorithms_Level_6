@@ -44,6 +44,29 @@ namespace Jagged_Array_Problems
             }
 
             #endregion
+
+
+            #region Problem 3: Dynamic Seating Arrangement in a Classroom
+
+            Console.WriteLine("====== Problem 3 ======");
+            int[][] jag3 = new int[][]
+            {
+                new int[] { 1, 2, 3 }, // Row 1
+                new int[] { 4, 5 },    // Row 2
+                new int[] { 6, 7, 8, 9 } // Row 3
+            };
+
+            for(int i = 0; i< jag3.Length; i++)
+            {
+                Console.Write($"Row {i + 1}: ");
+                foreach(var seat in jag3[i])
+                {
+                    Console.Write($"{seat} ");
+                }
+                Console.WriteLine();
+            }
+
+            #endregion
         }
     }
 }
