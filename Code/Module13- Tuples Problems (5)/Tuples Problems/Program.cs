@@ -41,6 +41,12 @@ namespace Tuples_Problems
             var result = IsPass(75);
             Console.WriteLine($"Success: {result.Success}, Score: {result.Score}");
             #endregion
+
+            #region Problem 5: Simplified Address Representation
+            Console.WriteLine("\n====== Problem 5 ======");
+            var address = (Street: "123 Main St", City: "Springfield", State: "IL", Zip: "62704");
+            Console.WriteLine($"Address: {address.Street}, {address.City}, {address.State}, {address.Zip}");
+            #endregion
         }
         //function for problem 1
         static (string Name, int Age, double Grade) GetStudentInfo()
