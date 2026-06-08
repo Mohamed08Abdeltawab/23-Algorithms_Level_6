@@ -112,6 +112,28 @@ namespace Jagged_Array_Problems
             }
 
             #endregion
+
+
+            #region Problem 6: Survey Responses
+
+            Console.WriteLine("====== Problem 6 ======");
+            string[][] jag6 = new string[][]
+            {
+                new string[] { "Yes", "No", "Yes" }, // Product 1
+                new string[] { "No", "Yes" },      // Product 2
+        };
+
+            for (int i = 0; i < jag6.Length; i++)
+            {
+                Console.Write($"Row {i + 1}: ");
+                foreach (var response in jag6[i])
+                {
+                    Console.Write($"{response} ");
+                }
+                Console.WriteLine();
+            }
+
+            #endregion
         }
     }
 }
