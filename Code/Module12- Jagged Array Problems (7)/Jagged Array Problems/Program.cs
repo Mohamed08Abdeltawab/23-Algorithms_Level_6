@@ -69,7 +69,7 @@ namespace Jagged_Array_Problems
             #endregion
 
 
-            #region Problem 4: Dynamic Seating Arrangement in a Classroom
+            #region Problem 4: Daily Sales for Different Products - Solution
 
             Console.WriteLine("====== Problem 4 ======");
             int[][] jag4 = new int[][]
@@ -85,6 +85,28 @@ namespace Jagged_Array_Problems
                 foreach (var sale in jag4[i])
                 {
                     Console.Write($"{sale} ");
+                }
+                Console.WriteLine();
+            }
+
+            #endregion
+
+
+            #region Problem 5: Flight Seat Reservations
+
+            Console.WriteLine("====== Problem 5 ======");
+            bool[][] jag5 = new bool[][]
+            {
+                new bool[] { true, false, true }, // Product 1
+                new bool[] { false, true },      // Product 2
+        };
+
+            for (int i = 0; i < jag5.Length; i++)
+            {
+                Console.Write($"Row {i + 1}: ");
+                foreach (var seat in jag5[i])
+                {
+                    Console.Write(seat ? "Available " : "Occupied ");
                 }
                 Console.WriteLine();
             }
