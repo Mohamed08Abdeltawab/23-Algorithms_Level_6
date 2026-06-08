@@ -16,6 +16,14 @@ namespace Tuples_Problems
             Console.WriteLine($"Name: {studentInfo.Name}, Age: {studentInfo.Age}, Grade: {studentInfo.Grade}");
 
             #endregion
+
+
+            #region Problem 2: Track Player Stats in a Game
+            Console.WriteLine("\n====== Problem 2 ======");
+            var playerStats = (Name: "John", Score: 1500, Level: 10);
+            Console.WriteLine($"Player: {playerStats.Name}, Score: {playerStats.Score}, Level: {playerStats.Level}");
+
+            #endregion
         }
         //function for problem 1
         static (string Name, int Age, double Grade) GetStudentInfo()
