@@ -34,11 +34,31 @@ namespace Tuples_Problems
             Console.WriteLine($"{emp1.Name} has a {(emp1.Salary > emp2.Salary ? "higher" : "lower")} salary than {emp2.Name}");
 
             #endregion
+
+
+            #region Problem 4: Return Success or Failure from a Function
+            Console.WriteLine("\n====== Problem 4 ======");
+            var result = IsPass(75);
+            Console.WriteLine($"Success: {result.Success}, Score: {result.Score}");
+            #endregion
         }
         //function for problem 1
         static (string Name, int Age, double Grade) GetStudentInfo()
         {
             return ("Alice", 20, 85.5);
+        }
+
+        //function for problem 4
+        static (bool Success, double Score) IsPass(double score)
+        {
+            if(score >= 50)
+            {
+                return (true, score);
+            }
+            else
+            {
+                return (false, score);
+            }
         }
     }
 }
