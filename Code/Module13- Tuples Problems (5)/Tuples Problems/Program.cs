@@ -24,6 +24,16 @@ namespace Tuples_Problems
             Console.WriteLine($"Player: {playerStats.Name}, Score: {playerStats.Score}, Level: {playerStats.Level}");
 
             #endregion
+
+
+            #region Problem 3: Store and Compare Employee Details
+            Console.WriteLine("\n====== Problem 3 ======");
+            var emp1 = (Name: "Alice", Age: 30, Salary: 50000);
+            var emp2 = (Name: "Bob", Age: 25, Salary: 60000);
+
+            Console.WriteLine($"{emp1.Name} has a {(emp1.Salary > emp2.Salary ? "higher" : "lower")} salary than {emp2.Name}");
+
+            #endregion
         }
         //function for problem 1
         static (string Name, int Age, double Grade) GetStudentInfo()
