@@ -33,6 +33,23 @@ namespace BitArray_Problems
             }
 
             #endregion
+
+            #region Problem3: Optimizing Space in Large Data
+            Console.WriteLine("====== Problem 3 ======");
+
+            BitArray bArr3 = new BitArray(1000); // 1000 bits initialized to false
+            bArr3.Set(224, true); // Set the 225th bit to true
+            bArr3.Set(433, true); // Set the 434th bit to true
+
+            for(int i =0; i< bArr3.Length; i++)
+            {
+                if (bArr3[i])
+                {
+                    Console.WriteLine($"Bit at index {i} is set to true.");
+                }
+            }
+
+            #endregion
         }
     }
 }
