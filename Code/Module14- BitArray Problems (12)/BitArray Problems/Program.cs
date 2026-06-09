@@ -91,6 +91,28 @@ namespace BitArray_Problems
                 Console.WriteLine($"No Password is weak: {bArr5[0]}, {bArr5[1]}, {bArr5[2]}, {bArr5[3]}");
 
             #endregion
+
+
+
+            #region Problem6: Password Policy Enforcement
+            Console.WriteLine("\n====== Problem 5 ======");
+
+            BitArray bArr6 = new BitArray(4, false); // 4 bits for password policy criteria
+            string password2 = "Pssw0rd!";
+
+            foreach(char ch in password2)
+            {
+                bArr6[0] = password2.Any(char.IsUpper); // Uppercase letter
+                bArr6[1] = password2.Any(char.IsLower); // Lowercase letter
+                bArr6[2] = password2.Any(char.IsDigit); // Digit
+                bArr6[3] = password2.Any(c => "!@#$%^&*".Contains(c)); // Special character
+            }
+
+            var allTrue2 = bArr6.Cast<bool>().All(b => b);
+            Console.WriteLine($"is passowrd valid: {(allTrue2 ? "Yes" : "No")}");
+
+
+            #endregion
         }
         // Enum for Problem 4
         public enum DaysOfWeek
