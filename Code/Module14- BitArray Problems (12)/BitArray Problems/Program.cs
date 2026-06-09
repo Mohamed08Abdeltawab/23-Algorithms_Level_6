@@ -206,6 +206,38 @@ namespace BitArray_Problems
             Console.WriteLine($"The integer value of the BitArray is: {result11}");
 
             #endregion
+
+
+            #region Problem12: Create a BitArray from an Integer
+            Console.WriteLine("\n====== Problem 12 ======");
+
+            int number12 = 10; // Example integer
+            BitArray bArr12 = new BitArray(new[] { number12 });
+
+            Console.Write("BitArray representation of " + number12 + ": ");
+            bool leadingZero = true; // To suppress leading zeros
+            for (int i = bArr12.Length - 1; i >= 0; i--)
+            {
+                if (bArr12[i])
+                {
+                    leadingZero = false;
+                }
+                if (!leadingZero)
+                {
+                    Console.Write(bArr12[i] ? "1" : "0");
+                }
+            }
+
+
+            // In case the number is 0, print a single "0"
+            if (leadingZero)
+            {
+                Console.Write("0");
+            }
+
+
+
+            #endregion
         }
         // Enum for Problem 4
         public enum DaysOfWeek
