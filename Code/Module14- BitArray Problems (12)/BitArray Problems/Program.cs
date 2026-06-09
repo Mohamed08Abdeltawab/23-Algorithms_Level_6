@@ -227,6 +227,11 @@ namespace BitArray_Problems
                     Console.Write(bArr12[i] ? "1" : "0");
                 }
             }
+            Console.WriteLine();
+            foreach(bool bit in bArr12)
+            {
+                Console.Write(bit ? "1" : "0");//this will print 32 bits first 4 bits for 10 and the rest are 0 so we need to do the above loop to print only the relevant bits without leading zeros
+            }
 
 
             // In case the number is 0, print a single "0"
