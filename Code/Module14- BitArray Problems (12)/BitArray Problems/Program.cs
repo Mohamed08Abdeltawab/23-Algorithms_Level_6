@@ -157,6 +157,33 @@ namespace BitArray_Problems
             Console.WriteLine($"Total votes not cast: {bArr9.Length - yesVotes_1}");
 
             #endregion
+
+
+            #region Problem10: Perform Bitwise AND + OR + NOT Between Two BitArrays
+            Console.WriteLine("\n====== Problem 10 ======");
+
+            BitArray bArr10_1 = new BitArray(new bool[] { true, false, true, false });
+            BitArray bArr10_2 = new BitArray(new bool[] { true, true, false, false });
+
+            if(bArr10_1.Length != bArr10_2.Length)
+            {
+                Console.WriteLine("BitArrays must be of the same length for bitwise operations.");
+                return;
+            }
+
+            BitArray and_10 = new BitArray(bArr10_1); // Create a copy of the first BitArray
+            and_10.And(bArr10_2); // Perform bitwise AND operation
+            Console.WriteLine($"Bitwise AND result: {string.Join(", ", and_10.Cast<bool>())}");
+
+            BitArray or_10 = new BitArray(bArr10_1); // Create a copy of the first BitArray
+            or_10.Or(bArr10_2); // Perform bitwise OR operation
+            Console.WriteLine($"Bitwise OR result: {string.Join(", ", or_10.Cast<bool>())}");
+
+            BitArray not_10 = new BitArray(bArr10_1); // Create a copy of the first BitArray
+            not_10.Not(); // Perform bitwise NOT operation
+            Console.WriteLine($"Bitwise NOT result: {string.Join(", ", not_10.Cast<bool>())}");
+
+            #endregion
         }
         // Enum for Problem 4
         public enum DaysOfWeek
