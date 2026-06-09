@@ -140,6 +140,21 @@ namespace BitArray_Problems
             }
             Console.WriteLine($"Total votes cast: {yesVotes}");
 
+            #endregion
+
+            #region Problem9: Count the Number of True Bits / False Bits in a BitArray 
+            Console.WriteLine("\n====== Problem 9 ======");
+
+            BitArray bArr9 = new BitArray(8, false); // 8 candidates
+            bArr9[2] = true; // Vote for candidate 3
+            bArr9[5] = true; // Vote for candidate 6
+            int yesVotes_1 = 0;
+            foreach (bool vot in bArr9)
+            {
+                if (vot) yesVotes_1++;
+            }
+            Console.WriteLine($"Total votes cast: {yesVotes_1}");
+            Console.WriteLine($"Total votes not cast: {bArr9.Length - yesVotes_1}");
 
             #endregion
         }
