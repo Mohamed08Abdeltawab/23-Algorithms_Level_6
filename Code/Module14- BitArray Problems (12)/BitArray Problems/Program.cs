@@ -126,6 +126,22 @@ namespace BitArray_Problems
             Console.WriteLine($"Green: {(bArr7[2] ? "On" : "Off")}");
 
             #endregion
+
+            #region Problem8: Voting System
+            Console.WriteLine("\n====== Problem 8 ======");
+
+            BitArray bArr8 = new BitArray(8, false); // 8 candidates
+            bArr8[2] = true; // Vote for candidate 3
+            bArr8[5] = true; // Vote for candidate 6
+            int yesVotes = 0;
+            foreach(bool vot in bArr8)
+            {
+                if (vot) yesVotes++;
+            }
+            Console.WriteLine($"Total votes cast: {yesVotes}");
+
+
+            #endregion
         }
         // Enum for Problem 4
         public enum DaysOfWeek
