@@ -70,6 +70,27 @@ namespace BitArray_Problems
             }
 
             #endregion
+
+            #region Problem5: Password Strength Checker
+            Console.WriteLine("\n====== Problem 5 ======");
+
+            BitArray bArr5 = new BitArray(4,false); // 4 bits for password strength criteria
+            string password = "Pssw0rd";
+            foreach(char ch in password)
+            {
+                if(char.IsUpper(ch)) bArr5[0] = true; // Uppercase letter
+                if (char.IsLower(ch)) bArr5[1] = true; // Lowercase letter
+                if (char.IsDigit(ch)) bArr5[2] = true; // Digit
+                if(!char.IsLetterOrDigit(ch)) bArr5[3] = true; //special character
+            }
+
+            var allTrue = bArr5.Cast<bool>().All(b => b);
+            if (allTrue)
+                Console.WriteLine($"Yes Password is strong: {bArr5[0]}, {bArr5[1]}, {bArr5[2]}, {bArr5[3]}");
+            else
+                Console.WriteLine($"No Password is weak: {bArr5[0]}, {bArr5[1]}, {bArr5[2]}, {bArr5[3]}");
+
+            #endregion
         }
         // Enum for Problem 4
         public enum DaysOfWeek
