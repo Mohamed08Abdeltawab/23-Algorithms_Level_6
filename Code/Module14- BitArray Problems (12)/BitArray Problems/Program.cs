@@ -95,7 +95,7 @@ namespace BitArray_Problems
 
 
             #region Problem6: Password Policy Enforcement
-            Console.WriteLine("\n====== Problem 5 ======");
+            Console.WriteLine("\n====== Problem 6 ======");
 
             BitArray bArr6 = new BitArray(4, false); // 4 bits for password policy criteria
             string password2 = "Pssw0rd!";
@@ -111,6 +111,19 @@ namespace BitArray_Problems
             var allTrue2 = bArr6.Cast<bool>().All(b => b);
             Console.WriteLine($"is passowrd valid: {(allTrue2 ? "Yes" : "No")}");
 
+            #endregion
+
+
+            #region Problem7: Traffic Light Simulation
+            Console.WriteLine("\n====== Problem 7 ======");
+
+            BitArray bArr7 = new BitArray(3, false); // 3 bits for traffic light states: Red, Yellow, Green
+            bArr7[0] = true; // Red light is on
+
+            Console.WriteLine("Traffic Light States:");
+            Console.WriteLine($"Red: {(bArr7[0] ? "On" : "Off")}");
+            Console.WriteLine($"Yellow: {(bArr7[1] ? "On" : "Off")}");
+            Console.WriteLine($"Green: {(bArr7[2] ? "On" : "Off")}");
 
             #endregion
         }
