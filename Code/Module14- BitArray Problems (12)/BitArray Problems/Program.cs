@@ -184,6 +184,28 @@ namespace BitArray_Problems
             Console.WriteLine($"Bitwise NOT result: {string.Join(", ", not_10.Cast<bool>())}");
 
             #endregion
+
+
+            #region Problem11: Convert a BitArray to an Integer
+            Console.WriteLine("\n====== Problem 11 ======");
+
+            BitArray bArr11 = new BitArray(new bool[] { true, false, true, false, false, false, false }); // Represents the binary number 1010 (10 in decimal)
+            int result11 = 0;
+            for (int i = 0; i < bArr11.Length; i++)
+            {
+                if (bArr11[i])//if tue equal 1 then add 2^i to the result{
+                {
+                    // |= mean OR between two binary numbers 
+                    result11 |= (1 << i); // << is mean shift 1 to the left by i positions, which is equivalent to 2^i
+                    //when i = 0 is true then -> then 0 | 1 << 0 = 0 | 1 = 1 
+                    //when i = 1 false not access -> still 1
+                    //when i = 2 true then 1 | 1 << 2 = 001 | 100 = 101
+                    //when i = 3 false not access -> still 101
+                }
+            }
+            Console.WriteLine($"The integer value of the BitArray is: {result11}");
+
+            #endregion
         }
         // Enum for Problem 4
         public enum DaysOfWeek
