@@ -22,6 +22,17 @@ namespace BitArray_Problems
             Console.WriteLine(string.Join(", ", bArr1.Cast<bool>()));
 
             #endregion
+
+            #region Problem2: User Survey Results
+            Console.WriteLine("====== Problem 2 ======");
+
+            BitArray bArr2 = new BitArray(new bool[10] { false, true, false, true, false, true, false, true, false, true });
+            for(int i = 0; i< bArr2.Length; i++)
+            {
+                Console.WriteLine($"User {i + 1} -> {(bArr2[i]? "Yes" : "No")}");
+            }
+
+            #endregion
         }
     }
 }
