@@ -30,6 +30,21 @@ namespace Hash_Table__SortedList__SortedSet_Problems
                 Console.WriteLine(item.Key + ": " + item.Value);
             }
 
+            #endregion
+
+
+            #region Problem2: Sort and Remove Duplicates from a List
+            Console.WriteLine("\n====== Problem 2 ======");
+
+            List<int> list2 = new List<int>() { 5, 3, 8, 1, 2, 5, 3 };
+
+            SortedSet<int> sortedList2 = new SortedSet<int>(list2);
+
+            foreach (int item in sortedList2)
+            {
+                Console.WriteLine(item);
+            }
+
 
             #endregion
         }
