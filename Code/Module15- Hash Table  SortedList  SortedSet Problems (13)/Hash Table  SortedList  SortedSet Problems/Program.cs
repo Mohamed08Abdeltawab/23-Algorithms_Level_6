@@ -134,6 +134,25 @@ namespace Hash_Table__SortedList__SortedSet_Problems
             }
 
             #endregion
+
+            #region Problem8: Track Unique Items in a Shopping Cart
+            Console.WriteLine("\n====== Problem 8 ======");
+
+            SortedSet<string> shoppingCart = new SortedSet<string>
+            {
+                "Apple",
+                "Banana",
+                "Orange",
+                "Apple" // Duplicate, won't be added
+            };
+
+            Console.WriteLine("Shopping cart items (sorted):");
+            foreach (var item in shoppingCart)
+            {
+                Console.WriteLine(item);
+            }
+
+            #endregion
         }
     }
 }
