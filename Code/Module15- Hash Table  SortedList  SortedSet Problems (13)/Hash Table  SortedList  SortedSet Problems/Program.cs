@@ -60,6 +60,23 @@ namespace Hash_Table__SortedList__SortedSet_Problems
             }
 
             #endregion
+
+
+            #region Problem4: Track Unique Active Users by Login Time
+            Console.WriteLine("\n====== Problem 4 ======");
+            //we need ordering and uniqueness, so we can use SortedSet with a custom comparer
+            SortedSet<DateTime> activeUsers4 = new SortedSet<DateTime>();
+            activeUsers4.Add(new DateTime(2024, 11, 9, 10, 7, 0, 0));
+            activeUsers4.Add(new DateTime(2024, 11, 9, 10, 0, 0, 0));
+            activeUsers4.Add(new DateTime(2024, 11, 9, 10, 5, 0, 0));
+
+            foreach (DateTime loginTime in activeUsers4)
+            {
+                Console.WriteLine("Active user login time: " + loginTime);
+            }
+
+
+            #endregion
         }
     }
 }
