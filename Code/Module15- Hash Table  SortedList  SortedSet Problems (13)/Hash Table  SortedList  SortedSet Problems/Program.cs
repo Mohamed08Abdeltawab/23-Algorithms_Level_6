@@ -153,6 +153,27 @@ namespace Hash_Table__SortedList__SortedSet_Problems
             }
 
             #endregion
+
+            #region Problem9: Manage Unique Flight Times
+            Console.WriteLine("\n====== Problem 9 ======");
+
+            SortedSet<DateTime> flightTimes = new SortedSet<DateTime>
+            {
+                new DateTime(2024, 11, 19, 8, 0, 0),
+                new DateTime(2024, 11, 19, 12, 45, 0),
+                new DateTime(2024, 11, 19, 8, 0, 0) // Duplicate, won't be added
+            };
+
+            Console.WriteLine("Flight times (sorted):");
+            foreach (var time in flightTimes)
+            {
+                Console.WriteLine(time.ToShortTimeString());
+            }
+
+
+            #endregion
+
+
         }
     }
 }
