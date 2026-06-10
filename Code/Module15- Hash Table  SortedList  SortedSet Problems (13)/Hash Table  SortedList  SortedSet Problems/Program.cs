@@ -75,6 +75,25 @@ namespace Hash_Table__SortedList__SortedSet_Problems
                 Console.WriteLine("Active user login time: " + loginTime);
             }
 
+            #endregion
+
+
+            #region Problem5: Automatically Sort Event Timelines
+            Console.WriteLine("\n====== Problem 5 ======");
+
+            SortedSet<DateTime> eventTimeline5 = new SortedSet<DateTime>
+            {
+                new DateTime(2024, 12, 25),
+                new DateTime(2024, 11, 30),
+                new DateTime(2025, 1, 1)
+            };
+
+
+            Console.WriteLine("Upcoming events:");
+            foreach (var eventTime in eventTimeline5)
+            {
+                Console.WriteLine(eventTime.ToShortDateString());
+            }
 
             #endregion
         }
