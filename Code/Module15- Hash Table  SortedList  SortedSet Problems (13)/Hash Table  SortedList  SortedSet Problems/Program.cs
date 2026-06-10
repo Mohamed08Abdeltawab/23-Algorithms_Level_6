@@ -88,12 +88,32 @@ namespace Hash_Table__SortedList__SortedSet_Problems
                 new DateTime(2025, 1, 1)
             };
 
-
             Console.WriteLine("Upcoming events:");
             foreach (var eventTime in eventTimeline5)
             {
                 Console.WriteLine(eventTime.ToShortDateString());
             }
+
+            #endregion
+
+
+            #region Problem6: Organize Movie Showtimes
+            Console.WriteLine("\n====== Problem 6 ======");
+
+            SortedSet<DateTime> showtimes6 = new SortedSet<DateTime>
+        {
+            new DateTime(2024, 11, 19, 14, 0, 0),
+            new DateTime(2024, 11, 19, 12, 30, 0),
+            new DateTime(2024, 11, 19, 16, 15, 0)
+        };
+
+            Console.WriteLine("Next showtime: " + showtimes6.Min.ToShortTimeString());
+            Console.WriteLine("All showtimes:");
+            foreach (var time in showtimes6)
+            {
+                Console.WriteLine(time.ToShortTimeString());
+            }
+
 
             #endregion
         }
