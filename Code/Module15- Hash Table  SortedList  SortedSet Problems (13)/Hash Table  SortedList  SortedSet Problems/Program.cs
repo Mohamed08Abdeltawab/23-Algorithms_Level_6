@@ -169,6 +169,25 @@ namespace Hash_Table__SortedList__SortedSet_Problems
             {
                 Console.WriteLine(time.ToShortTimeString());
             }
+            #endregion
+
+            #region Problem10: Manage Tags in a Blogging Platform
+            Console.WriteLine("\n====== Problem 10 ======");
+
+            SortedSet<string> tags = new SortedSet<string>
+            {
+                "C#", "Programming", "Tutorial", "DotNet"
+            };
+
+            // Add more tags
+            tags.Add("Coding");
+            tags.Add("Programming"); // Duplicate, won't be added
+
+            Console.WriteLine("All Tags:");
+            foreach (var tag in tags)
+            {
+                Console.WriteLine(tag);
+            }
 
 
             #endregion
