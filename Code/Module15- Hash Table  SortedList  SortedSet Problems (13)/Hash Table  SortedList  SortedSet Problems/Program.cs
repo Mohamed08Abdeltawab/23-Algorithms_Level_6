@@ -101,11 +101,11 @@ namespace Hash_Table__SortedList__SortedSet_Problems
             Console.WriteLine("\n====== Problem 6 ======");
 
             SortedSet<DateTime> showtimes6 = new SortedSet<DateTime>
-        {
-            new DateTime(2024, 11, 19, 14, 0, 0),
-            new DateTime(2024, 11, 19, 12, 30, 0),
-            new DateTime(2024, 11, 19, 16, 15, 0)
-        };
+            {
+                new DateTime(2024, 11, 19, 14, 0, 0),
+                new DateTime(2024, 11, 19, 12, 30, 0),
+                new DateTime(2024, 11, 19, 16, 15, 0)
+            };
 
             Console.WriteLine("Next showtime: " + showtimes6.Min.ToShortTimeString());
             Console.WriteLine("All showtimes:");
@@ -114,6 +114,24 @@ namespace Hash_Table__SortedList__SortedSet_Problems
                 Console.WriteLine(time.ToShortTimeString());
             }
 
+            #endregion
+
+
+            #region Problem7: Manage Meeting Times for a Calendar
+            Console.WriteLine("\n====== Problem 7 ======");
+
+            SortedSet<TimeSpan> meetingTimes = new SortedSet<TimeSpan>
+            {
+                new TimeSpan(14, 0, 0), // 2:00 PM
+                new TimeSpan(9, 30, 0), // 9:30 AM
+                new TimeSpan(11, 0, 0)  // 11:00 AM
+            };
+
+            Console.WriteLine("Today's meetings (sorted):");
+            foreach (var time in meetingTimes)
+            {
+                Console.WriteLine(time);
+            }
 
             #endregion
         }
