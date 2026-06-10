@@ -13,6 +13,7 @@ namespace Trees_Problems
         static void Main(string[] args)
         {
             #region Problem1: File System Organization
+            Console.WriteLine("====== Problem 1 ======");
 
             FileNode root1 = new FileNode("Root", FileNode.NodeType.Directory);
 
@@ -30,6 +31,26 @@ namespace Trees_Problems
 
             root1.Print();
 
+            #endregion
+
+
+            #region Problem2: Hierarchical Employee Management
+            Console.WriteLine("\n====== Problem 2 ======");
+
+            HierarchyNode CEO = new HierarchyNode("Alice", "CEO");
+
+            var Bob = new HierarchyNode("Bob", "VP of Marketing");
+            var Lara = new HierarchyNode("Lara", "VP of Technology");
+
+            Bob.Children.Add(new HierarchyNode("Charlie", "Marketing Manager"));
+
+            Lara.Children.Add(new HierarchyNode("Dave", "Tech Lead"));
+            Lara.Children.Add(new HierarchyNode("Eve", "Software Engineer"));
+
+            CEO.Children.Add(Bob);
+            CEO.Children.Add(Lara);
+
+            CEO.Print();
 
 
             #endregion
@@ -64,8 +85,35 @@ namespace Trees_Problems
                 child.Print(indent + "  ");
             }
         }
-        #endregion
+
     }
+    #endregion
 
 
+    //Classes for Problem2
+    #region from Problem2: Hierarchical Employee Management
+    class HierarchyNode
+    {
+        public string Name { get; set; }
+        public string Position { get; set; }
+        public List<HierarchyNode> Children { get; set; } = new List<HierarchyNode>();
+
+        
+        public HierarchyNode(string name, string position)
+        {
+            Name = name;
+            Position = position;
+        }
+
+        public void Print(string indent = "")
+        {
+            Console.WriteLine(indent + Position + ": " + Name);
+            foreach (var child in Children)
+            {
+                child.Print(indent + "  ");
+            }
+        }
+
+    }
+    #endregion
 }
