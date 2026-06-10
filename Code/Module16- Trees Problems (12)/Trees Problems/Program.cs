@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -79,6 +80,28 @@ namespace Trees_Problems
 
             // Calculate and display total size
             Console.WriteLine($"\nTotal size of the directory: {root3.CalculateTotalSize()} bytes");
+            #endregion
+
+
+            #region Problem4: Priority Scheduling (Min-Heap Implementation)
+            Console.WriteLine("\n====== Problem 4 ======");
+
+            var scheduler = new Min_Heap();
+
+            // Add tasks with priorities
+            scheduler.Insert(new Task4("Task A", 3));
+            scheduler.Insert(new Task4("Task B", 1));
+            scheduler.Insert(new Task4("Task C", 2));
+            Console.WriteLine("Tasks entered in this order: Task A, Task B, Task C.\n");
+
+            // Process tasks in priority order
+            Console.WriteLine("Executing tasks in priority order:");
+            while (!scheduler.isEmpty())
+            {
+                Console.WriteLine(scheduler.ExtractMin());
+            }
+
+
             #endregion
         }
     }
@@ -179,5 +202,85 @@ namespace Trees_Problems
         }
 
     }
+    #endregion
+
+
+    //Classes for Problem4
+    #region from Problem4: Priority Scheduling (Min-Heap Implementation)
+    class Task4
+    {
+        public string Name { get; set; }
+        public int Priority { get; set; }
+        public Task4(string name, int priority)
+        {
+            Name = name;
+            Priority = priority;
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} (Priority: {Priority})";
+        }
+    }
+
+    class Min_Heap
+    {
+        private List<Task4> heap = new List<Task4>();
+        
+        public void Insert(Task4 task)
+        {
+            heap.Add(task);
+            heapifyUp(heap.Count - 1);//reArrange heap after inset
+        }
+
+        public Task4 ExtractMin()
+        {
+            if (heap.Count == 0) return null;
+
+            var minTask = heap[0];
+            heap[0] = heap[heap.Count - 1];
+            heap.RemoveAt(heap.Count - 1);
+            heapifyDown(0);//reArrange heap after delete
+            return minTask;
+        }
+
+
+        public void heapifyUp(int index)
+        {
+            int parentIndex = (index - 1) / 2;
+            //if index greater than 0 and has a less pirority than his father then swap
+            if(index > 0 && heap[index].Priority < heap[parentIndex].Priority)
+            {
+                (heap[index], heap[parentIndex]) = (heap[parentIndex], heap[index]);
+                index = parentIndex;
+            }
+        }
+        public void heapifyDown(int index)
+        {
+            int smallest = index;
+            int leftChild = (2 * index) + 1;
+            int rightChild = (2* index) + 2;
+
+            if (leftChild < heap.Count && heap[leftChild].Priority < heap[smallest].Priority)
+                smallest = leftChild;
+
+            if(rightChild < heap.Count && heap[rightChild].Priority < heap[smallest].Priority)
+                smallest = rightChild;
+
+            if(smallest != index)//if there a change recursion if not then the index is the smallest one and break
+            {
+                (heap[index], heap[smallest]) = (heap[smallest], heap[index]);
+                heapifyDown(smallest);
+            }
+        }
+
+        public bool isEmpty()
+        {
+            return (heap.Count == 0);
+        }
+    }
+
+
+
     #endregion
 }
