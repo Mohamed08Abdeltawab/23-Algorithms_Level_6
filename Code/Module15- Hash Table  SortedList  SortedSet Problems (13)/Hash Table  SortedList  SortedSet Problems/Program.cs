@@ -198,16 +198,39 @@ namespace Hash_Table__SortedList__SortedSet_Problems
                 "apple", "application", "appreciate", "banana", "band", "bandwidth", "cat", "cater"
             };
 
-            Console.Write("Enter a prefix: ");
-            string prefix = Console.ReadLine();
+            //for ex: ap
+            string prefix = "a";
 
             var suggestions = GetSuggestions(words, prefix);
 
-            Console.WriteLine("Autocomplete suggestions:");
+            Console.WriteLine($"Autocomplete suggestions with prefix '{prefix}':");
             foreach (var suggestion in suggestions)
             {
                 Console.WriteLine(suggestion);
             }
+
+            #endregion
+
+
+            #region Problem12: Schedule Tasks Based on Priority
+            Console.WriteLine("\n====== Problem 12 ======");
+
+            SortedSet<Task> tasks12 = new SortedSet<Task>
+            {
+                new Task { Priority = 2, Description = "Write report" },
+                new Task { Priority = 1, Description = "Check emails" },
+                new Task { Priority = 3, Description = "Prepare presentation" },
+                new Task { Priority = 1, Description = "Attend meeting" } // Same priority as "Check emails"
+            };
+
+
+            Console.WriteLine("Tasks sorted by priority:");
+            foreach (var task in tasks12)
+            {
+                Console.WriteLine($"Priority: {task.Priority}, Description: {task.Description}");
+            }
+
+
 
             #endregion
 
@@ -223,6 +246,24 @@ namespace Hash_Table__SortedList__SortedSet_Problems
                 {
                     yield return word;
                 }
+            }
+        }
+
+
+        //class for Problem 12: Task with priority
+        class Task : IComparable<Task>
+        {
+            public int Priority { get; set; }
+            public string Description { get; set; }
+
+            public int CompareTo(Task other)
+            {
+                int result = this.Priority.CompareTo(other.Priority);// First compare by priority
+                if (result == 0)//if two is equal, then compare by description
+                {
+                    result = this.Description.CompareTo(other.Description);
+                }
+                return result;
             }
         }
     }
