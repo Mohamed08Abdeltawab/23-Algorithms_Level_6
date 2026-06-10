@@ -230,7 +230,30 @@ namespace Hash_Table__SortedList__SortedSet_Problems
                 Console.WriteLine($"Priority: {task.Priority}, Description: {task.Description}");
             }
 
+            #endregion
 
+
+            #region Problem13: Manage Reserved Seats in a Theater
+            Console.WriteLine("\n====== Problem 13 ======");
+
+            SortedSet<int> reservedSeats13 = new SortedSet<int> { 10, 20, 30 };
+
+
+            reservedSeats13.Add(25);
+
+            if (!reservedSeats13.Add(10))
+            {
+                // Duplicate, won't be added
+                Console.WriteLine("\nSeat 10 is already reserved!\n");
+            }
+            ;
+
+
+            Console.WriteLine("Reserved Seats:");
+            foreach (var seat in reservedSeats13)
+            {
+                Console.WriteLine("Seat " + seat);
+            }
 
             #endregion
 
