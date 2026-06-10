@@ -188,11 +188,42 @@ namespace Hash_Table__SortedList__SortedSet_Problems
             {
                 Console.WriteLine(tag);
             }
+            #endregion
 
+            #region Problem11: Autocomplete Suggestions in a Search Feature
+            Console.WriteLine("\n====== Problem 11 ======");
+
+            SortedSet<string> words = new SortedSet<string>
+            {
+                "apple", "application", "appreciate", "banana", "band", "bandwidth", "cat", "cater"
+            };
+
+            Console.Write("Enter a prefix: ");
+            string prefix = Console.ReadLine();
+
+            var suggestions = GetSuggestions(words, prefix);
+
+            Console.WriteLine("Autocomplete suggestions:");
+            foreach (var suggestion in suggestions)
+            {
+                Console.WriteLine(suggestion);
+            }
 
             #endregion
 
 
+        }
+
+        //function for Problem 11: Get autocomplete suggestions based on prefix
+        static IEnumerable<string> GetSuggestions(SortedSet<string> words, string prefix)
+        {
+            foreach(var word in words)
+            {
+                if(word.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+                {
+                    yield return word;
+                }
+            }
         }
     }
 }
