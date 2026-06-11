@@ -128,6 +128,36 @@ namespace Trees_Problems_Part2
                 : "No, the trees are not identical.");
 
             #endregion
+
+
+            #region Problem 12: Print the largest value at each level of a binary tree.
+            Console.WriteLine("\n====== Problem 12 ======");
+
+            var tree12 = new BinaryTree12();
+
+
+            // Create a sample tree
+            var root12 = new TreeNode12(1);
+            root12.Left = new TreeNode12(3);
+            root12.Right = new TreeNode12(2);
+            root12.Left.Left = new TreeNode12(5);
+            root12.Left.Right = new TreeNode12(3);
+            root12.Right.Right = new TreeNode12(9);
+
+            // Print the tree
+            Console.WriteLine("Binary Tree:");
+            tree12.Print(root12);
+
+            // Find and print the largest value at each level
+            Console.WriteLine("\nLargest Values at Each Level:");
+            var largestValues = tree12.LargestValuesAtEachLevel(root12);
+            for (int i = 0; i < largestValues.Count; i++)
+            {
+                Console.WriteLine($"Level {i + 1}: {largestValues[i]}");
+            }
+
+
+            #endregion
         }
     }
 
@@ -264,5 +294,64 @@ namespace Trees_Problems_Part2
     }
 
 
-        #endregion
+    #endregion
+
+    //classes for problem 12
+    #region from Problem 12: Print the largest value at each level of a binary tree.
+    class TreeNode12
+    {
+        public int Value { get; set; }
+        public TreeNode12 Left { get; set; }
+        public TreeNode12 Right { get; set; }
+
+
+        public TreeNode12(int value)
+        {
+            Value = value;
+        }
+
     }
+
+
+    class BinaryTree12
+    {
+        public List<int> LargestValuesAtEachLevel(TreeNode12 root)
+        {
+            var result = new List<int>();
+            if (root == null) return result;
+
+            var queue = new Queue<TreeNode12>();
+            queue.Enqueue(root);
+
+            while(queue.Count > 0)
+            {
+                int levelSize = queue.Count;
+                int maxValue = int.MinValue;
+                for (int i = 0; i < levelSize; i++)
+                {
+                    var currentNode = queue.Dequeue();
+                    maxValue = Math.Max(maxValue, currentNode.Value);
+                    //enqueue left and right children for the next level
+                    if(currentNode.Left != null) queue.Enqueue(currentNode.Left);
+                    if(currentNode.Right != null) queue.Enqueue(currentNode.Right);
+                }
+                //after processing each level, add the maximum value of that level to the result list
+                result.Add(maxValue);
+            }
+            return result;
+        }
+
+        public void Print(TreeNode12 root, string indent = "")
+        {
+            if (root == null) return;
+
+
+            Print(root.Left, indent + "  "); // Traverse the left subtree
+            Console.WriteLine($"{indent}{root.Value}"); // Print the current node with indentation
+            Print(root.Right, indent + "  "); // Traverse the right subtree
+        }
+    }
+
+
+    #endregion
+}
