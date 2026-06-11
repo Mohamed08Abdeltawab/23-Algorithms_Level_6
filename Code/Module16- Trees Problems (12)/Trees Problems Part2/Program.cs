@@ -74,6 +74,60 @@ namespace Trees_Problems_Part2
             Console.WriteLine($"Maximum Depth: {tree10.MaxDepth(root10)}");
 
             #endregion
+
+
+            #region Problem 11: Determine if given Two Trees are Identical or not?
+            Console.WriteLine("\n====== Problem 11 ======");
+
+            var tree11 = new BinaryTree11();
+
+
+            // Create first tree
+            var root1 = new TreeNode11(1);
+            root1.Left = new TreeNode11(2);
+            root1.Right = new TreeNode11(3);
+            root1.Left.Left = new TreeNode11(4);
+            root1.Left.Right = new TreeNode11(5);
+
+
+            // Create second tree (identical to the first tree)
+            var root2 = new TreeNode11(1);
+            root2.Left = new TreeNode11(2);
+            root2.Right = new TreeNode11(3);
+            root2.Left.Left = new TreeNode11(4);
+            root2.Left.Right = new TreeNode11(5);
+
+            // Print both trees
+            Console.WriteLine("Tree 1:");
+            tree11.Print(root1);
+
+
+            Console.WriteLine("\nTree 2:");
+            tree11.Print(root2);
+
+            // Check if the two trees are identical
+            Console.WriteLine("\nAre the two trees identical?");
+            Console.WriteLine(tree11.AreIdentical(root1, root2)
+                ? "Yes, the trees are identical."
+                : "No, the trees are not identical.");
+
+
+            // Create a third tree (not identical)
+            var root3 = new TreeNode11(1);
+            root3.Left = new TreeNode11(2);
+            root3.Right = new TreeNode11(4);
+
+
+            Console.WriteLine("\nTree 3:");
+            tree11.Print(root3);
+
+            // Check if the first and third trees are identical
+            Console.WriteLine("\nAre Tree 1 and Tree 3 identical?");
+            Console.WriteLine(tree11.AreIdentical(root1, root3)
+                ? "Yes, the trees are identical."
+                : "No, the trees are not identical.");
+
+            #endregion
         }
     }
 
@@ -166,4 +220,49 @@ namespace Trees_Problems_Part2
 
 
     #endregion
-}
+
+
+    //classes for problem 11
+    #region from Problem 11: Determine if given Two Trees are Identical or not?
+    class TreeNode11
+    {
+        public int Value { get; set; }
+        public TreeNode11 Left { get; set; }
+        public TreeNode11 Right { get; set; }
+
+
+        public TreeNode11(int value)
+        {
+            Value = value;
+        }
+
+    }
+
+    class BinaryTree11
+    {
+        // Method to determine if two trees are identical
+        public bool AreIdentical(TreeNode11 root1, TreeNode11 root2)
+        {
+            if(root1 == null && root2 == null) return true; // Both trees are empty
+
+            //if one is null and other is not then they are not identical
+            if(root1 == null || root2 == null) return false;
+
+            // Check if the current nodes have the same value and recursively check left and right subtrees
+            return (root1.Value == root2.Value) && AreIdentical(root1.Left, root2.Left) && AreIdentical(root1.Right, root2.Right);
+        }
+
+        public void Print(TreeNode11 root, string indent = "")
+        {
+            if (root == null) return;
+
+
+            Print(root.Left, indent + "  "); // Traverse the left subtree
+            Console.WriteLine($"{indent}{root.Value}"); // Print the current node with indentation
+            Print(root.Right, indent + "  "); // Traverse the right subtree
+        }
+    }
+
+
+        #endregion
+    }
