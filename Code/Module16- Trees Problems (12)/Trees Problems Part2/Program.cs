@@ -32,7 +32,28 @@ namespace Trees_Problems_Part2
             Console.WriteLine("File Permissions:");
             root.PrintPermissions();
 
+            #endregion
 
+
+            #region Problem 9: Category Hierarchy
+            Console.WriteLine("\n====== Problem 9 ======");
+
+            // Build the category hierarchy
+            var root9 = new CategoryNode("Electronics"); // Root category
+            var mobiles = new CategoryNode("Mobiles"); // Subcategory for mobiles
+            var laptops = new CategoryNode("Laptops"); // Subcategory for laptops
+            var samsung = new CategoryNode("Samsung"); // Sub-subcategory for Samsung
+            var apple = new CategoryNode("Apple"); // Sub-subcategory for Apple
+
+            // Add subcategories
+            mobiles.SubCategories.Add(samsung);
+            mobiles.SubCategories.Add(apple);
+            root9.SubCategories.Add(mobiles);
+            root9.SubCategories.Add(laptops);
+
+            // Print the category hierarchy
+            Console.WriteLine("Category Hierarchy:");
+            root9.Print(); // Start from the root
             #endregion
         }
     }
@@ -64,6 +85,33 @@ namespace Trees_Problems_Part2
 
     }
 
+
+    #endregion
+
+
+    //classes for problem 9
+    #region from Problem 9: Category Hierarchy
+    class CategoryNode
+    {
+        public string Name { get; set; } // Name of the category
+        public List<CategoryNode> SubCategories { get; set; } = new List<CategoryNode>(); // List of subcategories
+
+        public CategoryNode(string name)
+        {
+            Name = name; // Initialize the category with a name
+        }
+
+        // Recursive method to print the category hierarchy
+        public void Print(string indent = "")
+        {
+            Console.WriteLine(indent + Name); // Print the current category
+            foreach (var subCategory in SubCategories) // Loop through subcategories
+            {
+                subCategory.Print(indent + "  "); // Recursively print subcategories with indentation
+            }
+        }
+
+    }
 
     #endregion
 }
