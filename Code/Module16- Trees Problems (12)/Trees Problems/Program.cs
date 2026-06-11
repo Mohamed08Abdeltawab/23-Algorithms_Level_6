@@ -101,6 +101,42 @@ namespace Trees_Problems
                 Console.WriteLine(scheduler.ExtractMin());
             }
 
+            #endregion
+
+
+            #region Problem5: Decision-Making Process
+            Console.WriteLine("\n====== Problem 5 ======");
+
+            var root = new DecisionNode5("Is it raining?");
+            root.Yes = new DecisionNode5("Do you have an umbrella?");
+            root.No = new DecisionNode5("Is it sunny?");
+            root.Yes.Yes = new DecisionNode5("Go outside.");
+            root.Yes.No = new DecisionNode5("Stay inside.");
+            root.No.Yes = new DecisionNode5("Go outside.");
+            root.No.No = new DecisionNode5("Stay inside.");
+
+            var currentNode = root;
+
+
+            // Traverse the tree based on user input
+            while (currentNode.Yes != null && currentNode.No != null)
+            {
+                Console.WriteLine(currentNode.Question); // Ask the current question
+                string answer = Console.ReadLine().Trim().ToLower(); // Get user input ("yes" or "no")
+
+
+                // Navigate to the next node based on the answer
+                if (answer == "yes")
+                    currentNode = currentNode.Yes;
+                else if (answer == "no")
+                    currentNode = currentNode.No;
+                else
+                    Console.WriteLine("Please answer 'yes' or 'no'.");
+            }
+
+
+            // Display the recommendation (leaf node)
+            Console.WriteLine(currentNode.Question);
 
             #endregion
         }
@@ -139,7 +175,7 @@ namespace Trees_Problems
     #endregion
 
 
-    //Classes for Problem3
+    //Classes for Problem2
     #region from Problem2: Hierarchical Employee Management
     class HierarchyNode
     {
@@ -282,5 +318,23 @@ namespace Trees_Problems
 
 
 
+    #endregion
+
+
+    //Classes for Problem5
+    #region from Problem5: Decision-Making Process
+    class DecisionNode5
+    {
+        public string Question { get; set; }
+        public DecisionNode5 Yes { get; set; }
+        public DecisionNode5 No { get; set; }
+
+        public DecisionNode5(string question)
+        {
+            Question = question;
+        }
+    }
+
+    
     #endregion
 }
