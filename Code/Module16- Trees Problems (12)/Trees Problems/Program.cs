@@ -122,7 +122,8 @@ namespace Trees_Problems
             while (currentNode.Yes != null && currentNode.No != null)
             {
                 Console.WriteLine(currentNode.Question); // Ask the current question
-                string answer = Console.ReadLine().Trim().ToLower(); // Get user input ("yes" or "no")
+                string answer = "yes";
+                //answer Console.ReadLine().Trim().ToLower(); // Get user input ("yes" or "no")
 
 
                 // Navigate to the next node based on the answer
@@ -137,6 +138,30 @@ namespace Trees_Problems
 
             // Display the recommendation (leaf node)
             Console.WriteLine(currentNode.Question);
+
+            #endregion
+
+
+
+            #region Problem6: Representing a Social Network
+            Console.WriteLine("\n====== Problem 6 ======");
+
+            // Create instances of people
+            var alice = new UserNode("Alice");
+            var bob = new UserNode("Bob");
+            var charlie = new UserNode("Charlie");
+            var dave = new UserNode("Dave");
+
+
+            // Establish friendships
+            alice.Friends.Add(bob); // Alice is friends with Bob
+            alice.Friends.Add(charlie); // Alice is friends with Charlie
+            bob.Friends.Add(dave); // Bob is friends with Dave
+
+
+            // Print Alice's social network up to 2 levels deep
+            Console.WriteLine("Alice's Social Network:");
+            alice.PrintFriends(2); // Print friends and friends-of-friends
 
             #endregion
         }
@@ -335,6 +360,33 @@ namespace Trees_Problems
         }
     }
 
-    
+
+    #endregion
+
+
+    //Classes for Problem6
+    #region from Problem6: Representing a Social Network
+
+    class UserNode
+    {
+        public string Name { get; set; }
+        public List<UserNode> Friends { get; set; } = new List<UserNode>();
+
+        public UserNode(string name)
+        {
+            Name = name;
+        }
+
+        public void PrintFriends(int depth = 0, string indent = "")
+        {
+            if (depth == 0) return;
+            Console.WriteLine(indent + Name);
+            foreach (var friend in Friends)//first friend is bob from foreach if depth = 3 then will print name of friend of bob but depth is 2 and when reach to bob firend will return because depth is 0
+            {
+                friend.PrintFriends(depth - 1, indent + "  ");
+            }
+        }
+    }
+
     #endregion
 }
