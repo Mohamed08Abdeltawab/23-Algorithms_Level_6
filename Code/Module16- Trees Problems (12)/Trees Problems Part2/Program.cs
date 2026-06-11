@@ -55,6 +55,25 @@ namespace Trees_Problems_Part2
             Console.WriteLine("Category Hierarchy:");
             root9.Print(); // Start from the root
             #endregion
+
+
+            #region Problem 10: Maximum Depth of a Binary Tree
+            Console.WriteLine("\n====== Problem 10 ======");
+
+            var tree10 = new BinaryTree();
+
+
+            // Build a sample tree
+            var root10 = new TreeNode10(1);
+            root10.Left = new TreeNode10(2);
+            root10.Right = new TreeNode10(3);
+            root10.Left.Left = new TreeNode10(4);
+            root10.Left.Right = new TreeNode10(5);
+
+            // Calculate and print the maximum depth
+            Console.WriteLine($"Maximum Depth: {tree10.MaxDepth(root10)}");
+
+            #endregion
         }
     }
 
@@ -112,6 +131,39 @@ namespace Trees_Problems_Part2
         }
 
     }
+
+    #endregion
+
+
+    //classes for problem 10
+    #region from Problem 10: Maximum Depth of a Binary Tree
+    class TreeNode10
+    {
+        public int Value { get; set; }
+        public TreeNode10 Left { get; set; }
+        public TreeNode10 Right { get; set; }
+
+
+        public TreeNode10(int value)
+        {
+            Value = value;
+        }
+    }
+
+    class BinaryTree
+    {
+        public int MaxDepth(TreeNode10 root)
+        {
+            if(root == null) return 0;
+
+            int leftDepth = MaxDepth(root.Left);
+            int rightDepth = MaxDepth(root.Right);
+
+            return Math.Max(leftDepth, rightDepth) + 1;//one for root and starting from 0 for null nodes
+        }
+    }
+
+
 
     #endregion
 }
